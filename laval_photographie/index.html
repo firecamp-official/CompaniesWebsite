@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photographe Dark Cinematic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Imperial+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="index.html"><img src="Logos.png" class="header__logo"></a>
+        <div class="header__burger" id="burger">
+            <div class="header__burger-line"></div>
+            <div class="header__burger-line"></div>
+            <div class="header__burger-line"></div>
+        </div>
+    </header>
+
+
+    <nav class="menu" id="menu">
+        <div class="menu__close" id="menuClose">×</div>
+
+        <a href="#" class="menu__link">Accueil</a>
+        <a href="#portfolio" class="menu__link">Portfolio</a>
+        <a href="#about" class="menu__link">À propos</a>
+        <a href="#contact" class="menu__link">Contact</a>
+
+        <!-- Dropdown -->
+        <div class="menu__dropdown">
+            <button class="menu__link menu__dropdown-toggle" aria-expanded="false">
+                Mes services
+                <span class="menu__chevron">▾</span>
+            </button>
+
+            <ul class="menu__dropdown-content">
+                <li><a href="#service-1" class="menu__sublink">Photographie culinaire</a></li>
+                <li><a href="#service-2" class="menu__sublink">Photographie de liquides</a></li>
+                <li><a href="#service-3" class="menu__sublink">Produits beauté</a></li>
+                <li><a href="tirage-art.html" class="menu__sublink">Tirage d'art</a></li>
+                <li><a href="#service-5" class="menu__sublink">Bijoux</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title">Stéph Laval</h1>
+            <p class="hero__subtitle">Art. Photographie. Perception.</p>
+            <button class="hero__btn"
+                onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">Portfolio</button>
+        </div>
+    </section>
+    <section class="portfolio" id="portfolio">
+        <div class="portfolio__grid" id="portfolioGrid">
+            <div class="portfolio__item">
+                <a href="#" class="portfolio__link">
+                    <img src="https://picsum.photos/600/900?random=2" alt="Mariages" class="portfolio__img">
+                    <div class="portfolio__overlay">Fragments de Goût</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="galerie-portraits.html" class="portfolio__link">
+                    <img src="https://picsum.photos/600/1225?random=3" alt="Portraits" class="portfolio__img">
+                    <div class="portfolio__overlay">Ce qui Coule et Reste</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="galerie-concerts.html" class="portfolio__link">
+                    <img src="https://picsum.photos/600/700?random=4" alt="Concerts" class="portfolio__img">
+                    <div class="portfolio__overlay">La Peau Étoilée</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="galerie-nature.html" class="portfolio__link">
+                    <img src="https://picsum.photos/600/800?random=5" alt="Nature" class="portfolio__img">
+                    <div class="portfolio__overlay">Grâce Quotidienne</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="galerie-studio.html" class="portfolio__link">
+                    <img src="https://picsum.photos/600/600?random=6" alt="Studio" class="portfolio__img">
+                    <div class="portfolio__overlay">Portraits</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="galerie-evenements.html" class="portfolio__link">
+                    <img src="https://picsum.photos/600/900?random=7" alt="Événements" class="portfolio__img">
+                    <div class="portfolio__overlay">Recherches créatives</div>
+                </a>
+            </div>
+            <div class="portfolio__item">
+                <a href="tirage-art.html" class="portfolio__link">
+                    <img src="https://picsum.photos/500/1000?random=7" alt="Événements" class="portfolio__img">
+                    <div class="portfolio__overlay">Tirage d'art</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="about" id="about">
+        <h2 class="about__title">À propos</h2>
+        <p class="about__text">
+            Passionnée de <strong>photographie</strong>, de <strong>Formule 1</strong> et de <strong>nature</strong>, je
+            me suis reconvertie après 19 ans dans le milieu hospitalier. Diplômée de l’École d’Arts Appliqués de Reims,
+            je suis photographe professionnelle depuis 2022.
+        </p>
+        <p class="about__text">
+            Je capture avant tout <strong>l’authenticité et les émotions</strong>, à travers la <strong>lumière
+                naturelle</strong>. Mes univers : <strong>portraits, macro, paysages, nature et projets
+                créatifs</strong>.
+        </p>
+        <p class="about__text">
+            Pour les entreprises, je propose une <strong>stratégie visuelle sur-mesure</strong> pour valoriser vos
+            services et renforcer votre image de marque : publicité, portraits corporate, reportages ou créations
+            artistiques.
+        </p>
+        <p class="about__text">
+            Mon objectif : créer des images qui <strong>racontent une histoire</strong>, qui <strong>touchent</strong>
+            et qui <strong>mettent en valeur</strong>.
+            <strong>Contactez-moi</strong> pour discuter de votre projet ou obtenir un devis personnalisé.
+
+        </p>
+
+        <img src="https://picsum.photos/800/800?random=8" class="about__img">
+    </section>
+    <section class="hero">
+        <div class="hero__content">
+            <h1 class="hero__title">Stéph Laval</h1>
+            <p class="hero__subtitle">Art. Photographie. Perception.</p>
+            <button class="hero__btn"
+                onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Prendre
+                contact</button>
+        </div>
+    </section>
+    <section class="contact" id="contact">
+        <h2 class="contact__title">Contact</h2>
+        <p class="contact__subtitle">Envie de travailler ensemble ?</p>
+        <form class="contact__form">
+            <input class="contact__input" type="text" placeholder="Votre nom">
+            <input class="contact__input" type="email" placeholder="Votre email">
+            <textarea class="contact__input" placeholder="Votre message" rows="5"></textarea>
+            <button class="contact__btn">Envoyer</button>
+        </form>
+    </section>
+
+    <button id="backToTop" class="back-to-top">↑</button>
+    <button id="contact-btn" class="contact-btn" aria-label="Contact">
+        <a href="#contact">✉</a>
+    </button>
+
+    <footer class="footer">© 2026 Stéphanie Laval. Tous droits réservés.</footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
