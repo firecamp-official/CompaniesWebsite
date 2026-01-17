@@ -683,7 +683,7 @@
             border-radius: 20px;
             margin-bottom: 25px;
             text-align: center;
-            width: 70%;
+            width: 100%;
         }
 
         .slots__title {
@@ -858,3 +858,4 @@
         font-size: 0.9rem;
     }
 }
+
