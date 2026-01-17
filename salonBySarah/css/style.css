@@ -65,6 +65,7 @@
             position: relative;
             padding: 5px 0;
             transition: 0.3s;
+            color:#303030;
         }
 
         nav li a::after {
@@ -74,7 +75,7 @@
             height: 2px;
             bottom: 0;
             left: 0;
-            background: #fffafa;
+            background: #303030;
             transition: 0.3s;
         }
 
@@ -682,7 +683,7 @@
             border-radius: 20px;
             margin-bottom: 25px;
             text-align: center;
-            width: 30%;
+            width: 70%;
         }
 
         .slots__title {
