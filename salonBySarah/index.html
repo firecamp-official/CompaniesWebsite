@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Éclat Studio - Beauté & Style Premium V3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo"><img src="assets/logo.png" alt="Éclat Studio"></div>
+            <nav>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#testimonials">Avis</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="burger"><span></span><span></span><span></span></div>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 id="hero-title">Révélez votre style unique</h1>
+            <p>Un salon où créativité, beauté et bien-être se rencontrent</p>
+            <a href="#contact" class="hero-btn">Réservez maintenant</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Nos Prestations</h2>
+
+        <div class="services-tabs">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="femme">Femme</button>
+                <button class="tab-btn" data-tab="homme">Homme</button>
+                <button class="tab-btn" data-tab="enfants">Enfants</button>
+                <button class="tab-btn" data-tab="forfait">Forfaits</button>
+            </div>
+
+            <!-- FEMME -->
+            <div class="tab-content active" id="tab-femme">
+                <ul>
+
+                    <li>
+                        <span>Shampoing + Coupe</span>
+                        <ul class="subcat">
+                            <li data-service="Shampoing + Coupe (Court)">
+                                <span>Court</span><span>19€</span>
+                            </li>
+                            <li data-service="Shampoing + Coupe (Long)">
+                                <span>Long</span><span>19€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Shampoing + Coupe + Brushing</span>
+                        <ul class="subcat">
+                            <li data-service="Shampoing + Coupe + Brushing (Court)">
+                                <span>Court</span><span>26€</span>
+                            </li>
+                            <li data-service="Shampoing + Coupe + Brushing (Long)">
+                                <span>Long</span><span>29€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Shampoing + Coupe + Séchage</span>
+                        <ul class="subcat">
+                            <li data-service="Shampoing + Coupe + Séchage (Court)">
+                                <span>Court</span><span>23€</span>
+                            </li>
+                            <li data-service="Shampoing + Coupe + Séchage (Long)">
+                                <span>Long</span><span>26€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Shampoing + Brushing ou Mise en plis</span>
+                        <ul class="subcat">
+                            <li data-service="Brushing / Mise en plis (Court)">
+                                <span>Court</span><span>16€</span>
+                            </li>
+                            <li data-service="Brushing / Mise en plis (Long)">
+                                <span>Long</span><span>18€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Shampoing + Coupe + Couleur + Brushing</span>
+                        <ul class="subcat">
+                            <li data-service="Couleur + Coupe + Brushing (Court)">
+                                <span>Court</span><span>40€</span>
+                            </li>
+                            <li data-service="Couleur + Coupe + Brushing (Long)">
+                                <span>Long</span><span>44€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Shampoing + Coupe + Couleur + Séchage</span>
+                        <ul class="subcat">
+                            <li data-service="Couleur + Coupe + Séchage (Court)">
+                                <span>Court</span><span>37€</span>
+                            </li>
+                            <li data-service="Couleur + Coupe + Séchage (Long)">
+                                <span>Long</span><span>41€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Couleur sans ammoniaque + Brushing</span>
+                        <ul class="subcat">
+                            <li data-service="Couleur sans ammoniaque + Brushing (Court)">
+                                <span>Court</span><span>43€</span>
+                            </li>
+                            <li data-service="Couleur sans ammoniaque + Brushing (Long)">
+                                <span>Long</span><span>47€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Mèches + Coupe + Brushing</span>
+                        <ul class="subcat">
+                            <li data-service="Mèches + Coupe + Brushing (Court)">
+                                <span>Court</span><span>49€</span>
+                            </li>
+                            <li data-service="Mèches + Coupe + Brushing (Long)">
+                                <span>Long</span><span>54€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <span>Ombré + Coupe + Brushing</span>
+                        <ul class="subcat">
+                            <li data-service="Ombré + Coupe + Brushing (Court)">
+                                <span>Court</span><span>59€</span>
+                            </li>
+                            <li data-service="Ombré + Coupe + Brushing (Long)">
+                                <span>Long</span><span>59€</span>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li data-service="Soin"><span>Soin</span><span>5€</span></li>
+                    <li data-service="Patine"><span>Patine</span><span>10€</span></li>
+                    <li data-service="Lissage brésilien"><span>Lissage brésilien</span><span>115€</span></li>
+
+                </ul>
+            </div>
+
+            <!-- HOMME -->
+            <div class="tab-content" id="tab-homme">
+                <ul>
+                    <li data-service="Coupe Homme"><span>Coupe</span><span>19€</span></li>
+                    <li data-service="Coupe tondeuse / couronne"><span>Coupe tondeuse / couronne</span><span>14€</span>
+                    </li>
+                    <li data-service="Shampoing + Coupe + Barbe"><span>Shampoing + Coupe + Barbe</span><span>28€</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- ENFANTS -->
+            <div class="tab-content" id="tab-enfants">
+                <ul>
+                    <li data-service="Coupe enfant 0 à 3 ans"><span>Coupe 0 à 3 ans</span><span>10€</span></li>
+                    <li data-service="Coupe enfant 3 à 12 ans"><span>Coupe 3 à 12 ans</span><span>14€</span></li>
+                </ul>
+            </div>
+
+            <!-- FORFAITS -->
+            <div class="tab-content" id="tab-forfait">
+                <ul>
+                    <li data-service="Forfait étudiant"><span>Forfait étudiant</span><span>-15%</span></li>
+                    <li data-service="Forfait mariage + essai"><span>Forfait mariage + essai</span><span>80€</span></li>
+                    <li data-service="Coiffure soirée"><span>Coiffure soirée</span><span>40€</span></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+
+    <section class="gallery" id="gallery">
+        <h2>Galerie Inspiration</h2>
+        <div class="gallery-filter">
+            <button class="active" data-filter="all">Tous</button>
+            <button data-filter="hair">Coiffure</button>
+            <button data-filter="spa">Spa</button>
+        </div>
+        <div class="gallery-grid">
+            <img src="https://picsum.photos/400/300?random=21" data-category="hair" alt="Salon 1">
+            <img src="https://picsum.photos/400/300?random=22" data-category="hair" alt="Salon 2">
+            <img src="https://picsum.photos/400/300?random=23" data-category="spa" alt="Salon 3">
+            <img src="https://picsum.photos/400/300?random=24" data-category="hair" alt="Salon 4">
+            <img src="https://picsum.photos/400/300?random=25" data-category="spa" alt="Salon 5">
+            <img src="https://picsum.photos/400/300?random=26" data-category="spa" alt="Salon 6">
+        </div>
+    </section>
+    <section class="before-after" id="before-after">
+        <h2>Transformations Avant / Après</h2>
+        <div class="ba-container">
+            <div class="ba-image">
+                <img src="assets/before.jpg" alt="Avant" class="ba-imgin">
+                <div class="ba-resize"></div>
+                <img src="assets/after.jpg" alt="Après" class="ba-imgin">
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox"><img src="" alt="lightbox"></div>
+
+    <section class="testimonials" id="testimonials">
+        <h2>Avis Clients</h2>
+
+        <p>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"J'aime beaucoup ce salon, toujours bien accueilli<br> avec
+                gentillesse et bienveillance. Merci à vous"</p>
+            <p class="testimonial-author">- Adrien I.</p>
+        </div>
+        </p>
+        <p>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"Très bon accueil. On a compris de suite<br> ce que je voulais et je
+                suis pleinement <br>satisfaite du résultat.je recommande+++"</p>
+            <p class="testimonial-author">- Hélène T.</p>
+        </div>
+        </p>
+        <p>
+        <div class="testimonial-card">
+            <p class="testimonial-text">"Salon au top, trés accueillant, prix imbattables,<br> je conseille
+                sans hésitation."</p>
+            <p class="testimonial-author">- Nathalie O.</p>
+        </div>
+        </p>
+        <div class="testimonials-grid">
+
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="contact__title">Contactez-nous</h2>
+        <form class="contact__form">
+            <input type="text" placeholder="Nom" class="contact__input" required>
+            <input type="email" placeholder="Email" class="contact__input" required>
+            <textarea placeholder="Votre message..." class="contact__textarea" required></textarea>
+            <button type="submit" class="contact__btn">Envoyer</button>
+        </form>
+    </section>
+
+    <section class="slots">
+        <h3 class="slots__title">Créneaux disponibles</h3>
+
+        <input type="date" id="slotsDate" class="slots__date">
+
+        <div class="slots__grid" id="slotsGrid">
+            <p class="slots__hint">Trouvez un créneau disponible</p>
+        </div>
+    </section>
+
+    <section class="booking" id="booking">
+        <h2 class="booking__title">Réservation en ligne</h2>
+        <form class="booking__form">
+            <input type="text" placeholder="Nom" class="booking__input" required>
+            <input type="email" placeholder="Email" class="booking__input" required>
+            <input type="tel" placeholder="Téléphone" class="booking__input">
+
+            <select class="booking__select" id="serviceSelect" required>
+                <option value="">Choisissez un service</option>
+            </select>
+
+            <input type="date" class="booking__input" required>
+            <input type="time" class="booking__input" required readonly>
+
+            <button type="submit" class="booking__btn" disabled>
+                Réserver
+            </button>
+        </form>
+    </section>
+
+<a href="#booking" class="cta-float" aria-label="Prendre rendez-vous">
+    <span class="cta-inner">
+        <span class="cta-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path d="M256 320L216.5 359.5C203.9 354.6 190.3 352 176 352C114.1 352 64 402.1 64 464C64 525.9 114.1 576 176 576C237.9 576 288 525.9 288 464C288 449.7 285.3 436.1 280.5 423.5L563.2 140.8C570.3 133.7 570.3 122.3 563.2 115.2C534.9 86.9 489.1 86.9 460.8 115.2L320 256L280.5 216.5C285.4 203.9 288 190.3 288 176C288 114.1 237.9 64 176 64C114.1 64 64 114.1 64 176C64 237.9 114.1 288 176 288C190.3 288 203.9 285.3 216.5 280.5L256 320z"/>
+            </svg>
+        </span>
+        <span class="cta-text">Rendez-vous</span>
+    </span>
+</a>
+
+
+
+
+    <footer>&copy; 2026 Le salon by Sarah. Tous droits réservés.</footer>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const client = supabase.createClient(
+                'https://apiisvdmuzwkdklyjruz.supabase.co',
+                'sb_publishable_blxszWKxKm1wqzohJ0byxQ_7M_fs9I6'
+            );
+
+            const bookingForm = document.querySelector('.booking__form');
+            const slotsDate = document.getElementById('slotsDate');
+            const slotsGrid = document.getElementById('slotsGrid');
+            const timeInput = bookingForm.querySelector('input[type="time"]');
+            const submitBtn = bookingForm.querySelector('.booking__btn');
+
+            function timeToMinutes(t) {
+                const [h, m] = t.split(':').map(Number);
+                return h * 60 + m;
+            }
+
+            function generateSlots() {
+                const slots = [];
+                for (let h = 9; h < 18; h++) {
+                    slots.push(`${String(h).padStart(2, '0')}:00`);
+                    slots.push(`${String(h).padStart(2, '0')}:30`);
+                }
+                return slots;
+            }
+
+            async function loadAvailableSlots(date) {
+                slotsGrid.innerHTML = '';
+                timeInput.value = '';
+                submitBtn.disabled = true;
+
+                const { data, error } = await client
+                    .from('appointments')
+                    .select('time')
+                    .eq('date', date)
+                    .in('status', ['pending', 'approved']);
+
+                if (error) {
+                    slotsGrid.innerHTML =
+                        '<p class="slots__hint">Erreur de chargement</p>';
+                    return;
+                }
+
+                const blocked = data.map(a => a.time);
+
+                const available = generateSlots().filter(slot =>
+                    !blocked.some(bt =>
+                        Math.abs(timeToMinutes(bt) - timeToMinutes(slot)) < 30
+                    )
+                );
+
+                if (available.length === 0) {
+                    slotsGrid.innerHTML =
+                        '<p class="slots__hint">Aucun créneau disponible</p>';
+                    return;
+                }
+
+                available.forEach(time => {
+                    const div = document.createElement('div');
+                    div.className = 'slot';
+                    div.textContent = time;
+
+                    div.addEventListener('click', () => {
+                        document.querySelectorAll('.slot')
+                            .forEach(s => s.classList.remove('active'));
+
+                        div.classList.add('active');
+                        timeInput.value = time;
+                        submitBtn.disabled = false;
+                    });
+
+                    slotsGrid.appendChild(div);
+                });
+            }
+
+            slotsDate.addEventListener('change', () => {
+                if (slotsDate.value) {
+                    loadAvailableSlots(slotsDate.value);
+                }
+            });
+
+            // ✅ SUBMIT RDV — FONCTIONNEL
+            bookingForm.addEventListener('submit', async e => {
+                e.preventDefault();
+
+                const form = e.target;
+
+                const name = form.querySelector('input[placeholder="Nom"]').value.trim();
+                const email = form.querySelector('input[placeholder="Email"]').value.trim();
+                const phone = form.querySelector('input[placeholder="Téléphone"]').value.trim();
+                const service = form.querySelector('select').value;
+                const date = form.querySelector('input[type="date"]').value;
+                const time = timeInput.value;
+
+                if (!time) {
+                    alert("Veuillez sélectionner un créneau horaire.");
+                    return;
+                }
+
+                const { error } = await client
+                    .from('appointments')
+                    .insert([{
+                        name,
+                        email,
+                        phone,
+                        service,
+                        date,
+                        time,
+                        status: 'pending'
+                    }]);
+
+                if (error) {
+                    alert("Erreur lors de la réservation.");
+                    return;
+                }
+
+                alert("✅ Demande de rendez-vous envoyée !");
+                form.reset();
+                slotsGrid.innerHTML =
+                    '<p class="slots__hint">Choisissez une date</p>';
+                submitBtn.disabled = true;
+            });
+
+        });
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
