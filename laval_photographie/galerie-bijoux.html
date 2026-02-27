@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Montres &amp; Bijoux — Stéph Laval Photographe Fine Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* @font-face { font-family:'Dear Elisa'; src:url('DearElisa.woff2') format('woff2'); } */
+:root {
+  --ease-silk: cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-expo: cubic-bezier(0.16,1,0.3,1);
+  --nav-h: 72px;
+  --font-name: 'Dear Elisa','Cormorant Garamond',serif;
+  --font-body: 'Times New Roman',Times,serif;
+  --bg:#0d0b10; --bg-alt:#110e17; --bg-card:#16121e;
+  --fg:#f2f0f5; --fg-muted:#8a7f96; --fg-subtle:#2e2840;
+  --accent:#996ab4; --accent-light:#b98fd0;
+  --border:rgba(153,106,180,0.14);
+  --nav-scrolled-bg:rgba(13,11,16,0.90);
+  --overlay-hero:rgba(13,11,16,0.52);
+  --cursor-color:#f2f0f5; --cursor-mix:normal;
+  --grain-opacity:0.045;
+}
+[data-theme="light"] {
+  --bg:#f7f4fb; --bg-alt:#fdfbff; --bg-card:#ede8f5;
+  --fg:#1c1424; --fg-muted:#6b5f7a; --fg-subtle:#ddd5ea;
+  --accent:#7a4d9e; --accent-light:#996ab4;
+  --border:rgba(122,77,158,0.14);
+  --nav-scrolled-bg:rgba(247,244,251,0.90);
+  --overlay-hero:rgba(247,244,251,0.48);
+  --cursor-color:#1c1424; --cursor-mix:multiply;
+  --grain-opacity:0.022;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);line-height:1.7;overflow-x:hidden;cursor:none;transition:background .5s var(--ease-silk),color .5s var(--ease-silk);}
+img{display:block;width:100%;height:100%;object-fit:cover;}
+a{text-decoration:none;color:inherit;}
+
+/* GRAIN */
+body::before{content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:var(--grain-opacity);background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;}
+
+/* PAGE OVERLAY */
+#page-overlay{position:fixed;inset:0;background:var(--bg-card);z-index:9999;pointer-events:none;transition:opacity 1.2s var(--ease-silk);}
+#page-overlay.hidden{opacity:0;}
+
+/* CURSOR */
+#cursor-dot{position:fixed;width:8px;height:8px;background:var(--cursor-color);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s var(--ease-expo),height .3s var(--ease-expo),background .5s;mix-blend-mode:var(--cursor-mix);}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(153,106,180,0.5);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%);transition:width .5s var(--ease-expo),height .5s var(--ease-expo),border-color .3s,opacity .5s;}
+body.cursor-hover #cursor-dot{width:14px;height:14px;background:var(--accent);}
+body.cursor-hover #cursor-ring{width:56px;height:56px;border-color:var(--accent);}
+body.cursor-image #cursor-dot{width:60px;height:60px;background:rgba(153,106,180,0.15);mix-blend-mode:normal;}
+body.cursor-image #cursor-ring{opacity:0;}
+
+/* ── NAV SIMPLIFIÉE ──────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(24px,5vw,72px);
+  transition:background .5s var(--ease-silk);
+}
+nav.scrolled{background:var(--nav-scrolled-bg);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+
+.nav-logo{font-family:var(--font-name);font-size:clamp(22px,2.8vw,30px);font-style:italic;color:var(--fg);transition:opacity .3s;}
+.nav-logo:hover{opacity:.7;}
+
+.nav-right{display:flex;align-items:center;gap:24px;}
+
+.nav-back{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--fg-muted);font-family:var(--font-body);
+  position:relative;padding-bottom:2px;
+  transition:color .3s;
+}
+.nav-back::before{content:'←';font-size:13px;transition:transform .3s var(--ease-expo);}
+.nav-back:hover{color:var(--accent);}
+.nav-back:hover::before{transform:translateX(-4px);}
+
+.theme-toggle{width:44px;height:24px;background:none;border:1px solid var(--border);border-radius:12px;cursor:none;position:relative;padding:0;flex-shrink:0;display:flex;align-items:center;transition:border-color .3s;}
+.theme-toggle:hover{border-color:var(--accent);}
+.theme-toggle::before{content:'';position:absolute;left:3px;width:16px;height:16px;border-radius:50%;background:var(--accent);transition:transform .4s var(--ease-expo);}
+[data-theme="light"] .theme-toggle::before{transform:translateX(20px);}
+.toggle-icons{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center;padding:0 5px;pointer-events:none;}
+.toggle-icons span{font-size:9px;opacity:.5;}
+
+/* MOBILE NAV */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:none;padding:8px;background:none;border:none;}
+.hamburger span{display:block;width:24px;height:1px;background:var(--fg);transition:transform .4s var(--ease-expo),opacity .3s;transform-origin:center;}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.mobile-menu{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:40px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease-silk);}
+.mobile-menu.open{opacity:1;pointer-events:all;}
+.mobile-menu a{font-family:var(--font-name);font-size:clamp(28px,5vw,48px);font-style:italic;color:var(--fg);transition:color .3s;}
+.mobile-menu a:hover{color:var(--accent);}
+
+/* ── HERO ────────────────────────────────────── */
+.gallery-hero{
+  position:relative;height:75vh;overflow:hidden;
+  margin-top:var(--nav-h);
+}
+.gallery-hero-img{position:absolute;inset:0;}
+.gallery-hero-img img{height:100%;transform:scale(1.06);transition:transform 9s var(--ease-silk);}
+.gallery-hero.loaded .gallery-hero-img img{transform:scale(1);}
+
+.gallery-hero-overlay{
+  position:absolute;inset:0;
+  background:var(--overlay-hero);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding-bottom:clamp(48px,7vw,96px);
+  text-align:center;
+}
+.breadcrumb{
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(242,240,245,0.5);font-family:var(--font-body);
+  margin-bottom:16px;
+}
+.breadcrumb a{color:rgba(242,240,245,0.5);transition:color .3s;}
+.breadcrumb a:hover{color:var(--accent-light);}
+.breadcrumb span{opacity:.35;margin:0 8px;}
+
+.gallery-hero-title{
+  font-family:var(--font-name);
+  font-size:clamp(56px,10vw,140px);
+  font-style:italic;font-weight:400;
+  color:#f2f0f5;line-height:.9;
+  opacity:0;transform:translateY(28px);
+  transition:opacity 1.2s .3s var(--ease-silk),transform 1.2s .3s var(--ease-silk);
+}
+.gallery-hero.loaded .gallery-hero-title{opacity:1;transform:translateY(0);}
+.gallery-hero-sub{
+  font-size:clamp(10px,1.2vw,13px);letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(242,240,245,0.5);margin-top:18px;font-family:var(--font-body);
+  opacity:0;transform:translateY(14px);
+  transition:opacity 1s .6s var(--ease-silk),transform 1s .6s var(--ease-silk);
+}
+.gallery-hero.loaded .gallery-hero-sub{opacity:1;transform:translateY(0);}
+
+/* ── INTRO BAND ──────────────────────────────── */
+.gallery-intro{
+  background:var(--bg-card);
+  padding:clamp(48px,6vw,88px) clamp(24px,6vw,100px);
+  border-bottom:1px solid var(--border);
+  transition:background .5s var(--ease-silk);
+}
+.gallery-intro-inner{max-width:720px;margin:0 auto;text-align:center;}
+.gallery-intro-eyebrow{
+  display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:18px;font-family:var(--font-body);
+}
+.gallery-intro-text{
+  color:var(--fg-muted);font-size:clamp(15px,1.5vw,18px);
+  line-height:2;font-family:var(--font-body);
+}
+
+/* ── GRILLE CARRÉE ───────────────────────────── */
+.gallery-section{
+  padding:clamp(48px,6vw,88px) clamp(24px,6vw,100px);
+  background:var(--bg);transition:background .5s var(--ease-silk);
+}
+.gallery-controls{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:40px;flex-wrap:wrap;gap:16px;
+}
+.gallery-count{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-muted);font-family:var(--font-body);}
+.filter-bar{display:flex;gap:20px;flex-wrap:wrap;}
+.filter-btn{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--fg-muted);background:none;border:none;cursor:none;
+  padding:4px 0;position:relative;font-family:var(--font-body);transition:color .3s;
+}
+.filter-btn::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--accent);transition:width .4s var(--ease-expo);}
+.filter-btn:hover,.filter-btn.active{color:var(--fg);}
+.filter-btn:hover::after,.filter-btn.active::after{width:100%;}
+
+/* Grille carrée */
+.square-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+.grid-item{
+  position:relative;aspect-ratio:1/1;
+  overflow:hidden;cursor:none;
+  background:var(--bg-card);
+  transition:opacity .5s,transform .5s;
+}
+.grid-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s var(--ease-silk);
+}
+.grid-item:hover img{transform:scale(1.06);}
+.grid-item-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,11,16,0.82) 0%,rgba(13,11,16,0.1) 50%,transparent 100%);
+  opacity:0;transition:opacity .4s var(--ease-silk);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:16px;
+}
+.grid-item:hover .grid-item-overlay{opacity:1;}
+.grid-item-title{
+  font-family:var(--font-name);font-size:16px;font-style:italic;
+  color:#f2f0f5;line-height:1.2;
+  transform:translateY(8px);transition:transform .4s var(--ease-expo);
+}
+.grid-item:hover .grid-item-title{transform:translateY(0);}
+.grid-item-cat{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent-light);margin-top:4px;font-family:var(--font-body);
+  transform:translateY(8px);transition:transform .4s .05s var(--ease-expo);
+}
+.grid-item:hover .grid-item-cat{transform:translateY(0);}
+
+/* item .featured occupe 2×2 */
+.grid-item.featured{grid-column:span 2;grid-row:span 2;}
+
+/* ── LIGHTBOX ────────────────────────────────── */
+#lightbox{position:fixed;inset:0;background:rgba(13,11,16,0.97);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s var(--ease-silk);}
+#lightbox.active{opacity:1;pointer-events:all;}
+.lightbox-img-wrap{max-width:88vw;max-height:85vh;position:relative;}
+.lightbox-img-wrap img{max-width:88vw;max-height:85vh;object-fit:contain;transition:opacity .3s;}
+.lb-close{position:absolute;top:24px;right:24px;width:40px;height:40px;cursor:none;display:flex;align-items:center;justify-content:center;z-index:10;}
+.lb-close::before,.lb-close::after{content:'';position:absolute;width:24px;height:1px;background:#f2f0f5;transition:background .3s;}
+.lb-close::before{transform:rotate(45deg);}
+.lb-close::after{transform:rotate(-45deg);}
+.lb-close:hover::before,.lb-close:hover::after{background:var(--accent);}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;display:flex;align-items:center;justify-content:center;cursor:none;transition:opacity .3s;}
+.lb-nav:hover{opacity:.6;}
+.lb-prev{left:16px;}.lb-next{right:16px;}
+.lb-nav::before{content:'';width:12px;height:12px;border-top:1px solid #f2f0f5;border-right:1px solid #f2f0f5;}
+.lb-prev::before{transform:rotate(-135deg) translateY(-3px);}
+.lb-next::before{transform:rotate(45deg) translateY(-3px);}
+.lb-counter{position:absolute;bottom:-36px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.15em;color:rgba(242,240,245,0.4);}
+
+/* ── CTA ─────────────────────────────────────── */
+.gallery-cta{
+  padding:clamp(80px,10vw,140px) clamp(24px,6vw,100px);
+  background:var(--bg-card);text-align:center;
+  transition:background .5s var(--ease-silk);
+}
+.cta-eyebrow{display:block;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-family:var(--font-body);}
+.cta-title{font-family:var(--font-name);font-size:clamp(36px,5vw,72px);font-style:italic;color:var(--fg);margin-bottom:36px;line-height:1.05;}
+.btn-outline{display:inline-flex;align-items:center;gap:12px;background:transparent;border:1px solid rgba(242,240,245,0.28);color:var(--fg);font-family:var(--font-body);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:16px 32px;cursor:none;transition:border-color .4s,box-shadow .4s,background .4s,color .4s;}
+[data-theme="light"] .btn-outline{border-color:rgba(28,20,36,0.22);}
+.btn-outline:hover{border-color:var(--accent);box-shadow:0 0 30px rgba(153,106,180,0.25);background:rgba(153,106,180,0.08);color:var(--accent);}
+
+/* ── FOOTER ──────────────────────────────────── */
+footer{background:var(--bg-card);border-top:1px solid var(--border);padding:40px clamp(24px,6vw,100px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;transition:background .5s var(--ease-silk);}
+.footer-logo{font-family:var(--font-name);font-size:24px;font-style:italic;color:var(--fg);opacity:.6;}
+.footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.footer-copy{font-size:11px;color:var(--fg-muted);letter-spacing:.08em;font-family:var(--font-body);}
+.footer-legal{font-size:11px;color:var(--fg-muted);opacity:.7;font-family:var(--font-body);}
+.footer-legal a{color:var(--fg-muted);transition:color .3s;}
+.footer-legal a:hover{color:var(--accent);}
+.footer-instagram{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-muted);font-family:var(--font-body);display:inline-flex;align-items:center;gap:8px;transition:color .3s;}
+.footer-instagram:hover{color:var(--accent);}
+.footer-instagram svg{width:14px;height:14px;fill:currentColor;}
+
+.contact-fab{position:fixed;bottom:32px;right:32px;width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:500;cursor:none;font-size:18px;color:#f2f0f5;box-shadow:0 8px 32px rgba(153,106,180,0.45);transition:transform .3s var(--ease-expo),box-shadow .3s;text-decoration:none;}
+.contact-fab:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(153,106,180,0.6);}
+
+/* ── REVEAL ANIM ─────────────────────────────── */
+.reveal-anim{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease-silk),transform .9s var(--ease-silk);}
+.reveal-anim.in-view{opacity:1;transform:translateY(0);}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+.d5{transition-delay:.5s;}.d6{transition-delay:.6s;}.d7{transition-delay:.7s;}.d8{transition-delay:.8s;}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:1024px){.square-grid{grid-template-columns:repeat(3,1fr);}.grid-item.featured{grid-column:span 2;grid-row:span 2;}}
+@media(max-width:768px){
+  .nav-back span{display:none;}
+  .square-grid{grid-template-columns:repeat(2,1fr);gap:4px;}
+  .grid-item.featured{grid-column:span 2;grid-row:span 1;aspect-ratio:2/1;}
+  .filter-bar{display:none;}
+  footer{flex-direction:column;gap:16px;text-align:center;}.footer-right{align-items:center;}
+  #cursor-dot,#cursor-ring{display:none;}body{cursor:auto;}*{cursor:auto !important;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="page-overlay"></div>
+
+<div id="lightbox" role="dialog" aria-label="Visionneuse">
+  <div class="lightbox-img-wrap">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+  <button class="lb-close" id="lb-close" aria-label="Fermer"></button>
+  <button class="lb-nav lb-prev" id="lb-prev" aria-label="Précédent"></button>
+  <button class="lb-nav lb-next" id="lb-next" aria-label="Suivant"></button>
+</div>
+
+<!-- NAV SIMPLIFIÉE -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Stéph Laval</a>
+  <div class="nav-right">
+    <a href="index.html" class="nav-back"><span>Retour à l'accueil</span></a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+      <div class="toggle-icons"><span>☽</span><span>☀</span></div>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU simplifié -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="mobile-link">← Accueil</a>
+  <a href="index.html#about" class="mobile-link">À propos</a>
+  <a href="galerie-produit.html" class="mobile-link">Produit</a>
+  <a href="galerie-culinaire.html" class="mobile-link">Culinaire</a>
+  <a href="galerie-bijoux.html" class="mobile-link">Montres &amp; Bijoux</a>
+  <a href="galerie-portraits.html" class="mobile-link">Portraits</a>
+  <a href="tirages-art.html" class="mobile-link">Tirages d'art</a>
+  <a href="index.html#contact" class="mobile-link">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="gallery-hero" id="galleryHero">
+  <div class="gallery-hero-img">
+    <img src="https://picsum.photos/1800/900?random=110" alt="Montres &amp; Bijoux" loading="eager">
+  </div>
+  <div class="gallery-hero-overlay">
+    <p class="breadcrumb"><a href="index.html">Accueil</a><span>·</span>Montres &amp; Bijoux</p>
+    <h1 class="gallery-hero-title">Montres<br>&amp; Bijoux</h1>
+    <p class="gallery-hero-sub">Horlogerie · Joaillerie · Détails · Matières</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="gallery-intro">
+  <div class="gallery-intro-inner reveal-anim">
+    <span class="gallery-intro-eyebrow">La spécialité</span>
+    <p class="gallery-intro-text">Un éclairage d'orfèvre pour révéler chaque détail, reflet et matière. Montres, bagues, bracelets, colliers — chaque pièce mérite une mise en scène aussi soignée que sa fabrication. La photographie au service de l'excellence.</p>
+  </div>
+</div>
+
+<!-- GRILLE CARRÉE -->
+<div class="gallery-section">
+  <div class="gallery-controls">
+    <span class="gallery-count reveal-anim">12 photographies</span>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="montre">Montres</button>
+      <button class="filter-btn" data-filter="bague">Bagues &amp; Colliers</button>
+      <button class="filter-btn" data-filter="detail">Détails</button>
+    </div>
+  </div>
+  <div class="square-grid" id="squareGrid">
+    <div class="grid-item featured reveal-anim" data-cat="montre">
+      <img src="https://picsum.photos/700/700?random=111" alt="Montre de luxe" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Montre de luxe</div>
+        <div class="grid-item-cat">Horlogerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d1" data-cat="bague">
+      <img src="https://picsum.photos/700/700?random=112" alt="Bague solitaire" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Bague solitaire</div>
+        <div class="grid-item-cat">Joaillerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d2" data-cat="detail">
+      <img src="https://picsum.photos/700/700?random=113" alt="Détail cadran" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Détail cadran</div>
+        <div class="grid-item-cat">Détails</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d3" data-cat="montre">
+      <img src="https://picsum.photos/700/700?random=114" alt="Bracelet or" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Bracelet or</div>
+        <div class="grid-item-cat">Joaillerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d4" data-cat="bague">
+      <img src="https://picsum.photos/700/700?random=115" alt="Collier diamants" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Collier diamants</div>
+        <div class="grid-item-cat">Joaillerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d5" data-cat="detail">
+      <img src="https://picsum.photos/700/700?random=116" alt="Mécanisme visible" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Mécanisme visible</div>
+        <div class="grid-item-cat">Horlogerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d6" data-cat="montre">
+      <img src="https://picsum.photos/700/700?random=117" alt="Montre sport" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Montre sport</div>
+        <div class="grid-item-cat">Horlogerie</div>
+      </div>
+    </div>
+    <div class="grid-item featured reveal-anim d7" data-cat="bague">
+      <img src="https://picsum.photos/700/700?random=118" alt="Chevalière gravée" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Chevalière gravée</div>
+        <div class="grid-item-cat">Joaillerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d8" data-cat="detail">
+      <img src="https://picsum.photos/700/700?random=119" alt="Aiguilles dorées" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Aiguilles dorées</div>
+        <div class="grid-item-cat">Détails</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim" data-cat="bague">
+      <img src="https://picsum.photos/700/700?random=120" alt="Pendentif fin" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Pendentif fin</div>
+        <div class="grid-item-cat">Joaillerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d1" data-cat="montre">
+      <img src="https://picsum.photos/700/700?random=121" alt="Plongée fond noir" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Plongée fond noir</div>
+        <div class="grid-item-cat">Horlogerie</div>
+      </div>
+    </div>
+    <div class="grid-item reveal-anim d2" data-cat="detail">
+      <img src="https://picsum.photos/700/700?random=122" alt="Couronne en gros plan" loading="lazy">
+      <div class="grid-item-overlay">
+        <div class="grid-item-title">Couronne en gros plan</div>
+        <div class="grid-item-cat">Détails</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="gallery-cta">
+  <span class="cta-eyebrow reveal-anim">Travaillons ensemble</span>
+  <h2 class="cta-title reveal-anim d1">Un projet<br>joaillerie ?</h2>
+  <a href="index.html#contact" class="btn-outline reveal-anim d2">Me contacter →</a>
+</div>
+
+<a href="index.html#contact" class="contact-fab" aria-label="Contact">✉</a>
+
+<footer>
+  <span class="footer-logo">Stéph Laval</span>
+  <div class="footer-right">
+    <span class="footer-copy">© Stéph Laval — 2026 | Stéphanie Laval (EI) — Photographe Fine Art</span>
+    <span class="footer-legal">
+      <a href="index.html#mentions">Mentions légales &amp; RGPD</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.instagram.com/stephlaval1982/" target="_blank" rel="noopener" class="footer-instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.851s-.012 3.585-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.585 2.163 15.205 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163c-3.259 0-3.667.014-4.947.072-1.539.07-3.065.383-4.204 1.522C1.71 2.733 1.397 4.259 1.327 5.798 1.269 7.078 1.255 7.486 1.255 12c0 4.514.014 4.922.072 6.202.07 1.539.383 3.065 1.522 4.204 1.139 1.139 2.665 1.452 4.204 1.522C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.539-.07 3.065-.383 4.204-1.522 1.139-1.139 1.452-2.665 1.522-4.204.058-1.28.072-1.688.072-6.202s-.014-4.922-.072-6.202c-.07-1.539-.383-3.065-1.522-4.204C20.012.455 18.486.142 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        @stephlaval1982
+      </a>
+    </span>
+  </div>
+</footer>
+
+<script>
+const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.filter-btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-hover'));
+});
+document.querySelectorAll('.grid-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{document.body.classList.remove('cursor-hover');document.body.classList.add('cursor-image');});
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-image'));
+});
+
+// Theme
+const htmlEl=document.documentElement;
+htmlEl.setAttribute('data-theme',localStorage.getItem('theme')||'dark');
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const n=htmlEl.getAttribute('data-theme')==='dark'?'light':'dark';
+  htmlEl.setAttribute('data-theme',n);localStorage.setItem('theme',n);
+});
+
+// Page load
+window.addEventListener('load',()=>{
+  document.getElementById('page-overlay').classList.add('hidden');
+  document.getElementById('galleryHero').classList.add('loaded');
+});
+
+// Nav scroll
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// Hamburger
+const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobile-menu');
+hamburger.addEventListener('click',()=>{const o=hamburger.classList.toggle('open');mobileMenu.classList.toggle('open',o);document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('.mobile-link').forEach(a=>a.addEventListener('click',()=>{hamburger.classList.remove('open');mobileMenu.classList.remove('open');document.body.style.overflow='';}));
+
+// Reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in-view');}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal-anim').forEach(el=>obs.observe(el));
+
+// Filter
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active');
+    const f=this.dataset.filter;
+    document.querySelectorAll('.grid-item').forEach(item=>{
+      const show=f==='all'||item.dataset.cat===f;
+      item.style.opacity=show?'1':'0.12';
+      item.style.transform=show?'':'scale(0.96)';
+    });
+  });
+});
+
+// Lightbox
+const lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img'),lbCnt=document.getElementById('lb-counter');
+const imgs=Array.from(document.querySelectorAll('.grid-item img'));
+let idx=0;
+function openLb(i){idx=i;lbImg.src=imgs[i].src;lbImg.alt=imgs[i].alt;lbCnt.textContent=`${i+1} / ${imgs.length}`;lb.classList.add('active');document.body.style.overflow='hidden';}
+function closeLb(){lb.classList.remove('active');document.body.style.overflow='';}
+function navLb(d){idx=(idx+d+imgs.length)%imgs.length;lbImg.style.opacity='0';setTimeout(()=>{lbImg.src=imgs[idx].src;lbImg.alt=imgs[idx].alt;lbCnt.textContent=`${idx+1} / ${imgs.length}`;lbImg.style.opacity='1';},200);}
+document.querySelectorAll('.grid-item').forEach((item,i)=>item.addEventListener('click',()=>openLb(i)));
+document.getElementById('lb-close').addEventListener('click',closeLb);
+document.getElementById('lb-prev').addEventListener('click',()=>navLb(-1));
+document.getElementById('lb-next').addEventListener('click',()=>navLb(1));
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('active'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')navLb(-1);if(e.key==='ArrowRight')navLb(1);});
+</script>
+</body>
+</html>

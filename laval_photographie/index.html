@@ -1,0 +1,3054 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stéph Laval — Photographe Fine Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Cormorant Garamond pour le nom (remplacer par Dear Elisa quand le fichier font sera disponible) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital@1&display=swap"
+    rel="stylesheet">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+
+
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <style>
+    /* ==========================================
+   DEAR ELISA — font custom (à remplacer par le vrai fichier)
+   Quand vous aurez le fichier, décommentez et adaptez :
+   @font-face {
+     font-family: 'Dear Elisa';
+     src: url('DearElisa.woff2') format('woff2'),
+          url('DearElisa.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+   }
+   ========================================== */
+
+    /* ==========================================
+   CUSTOM PROPERTIES — DARK / LIGHT
+   ========================================== */
+    :root {
+      --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 72px;
+      /* Nom : Dear Elisa (fallback Cormorant Garamond) */
+      --font-name: 'Dear Elisa', 'Cormorant Garamond', serif;
+      /* Tout le reste : Times New Roman */
+      --font-body: 'Times New Roman', Times, serif;
+      --font-display: 'Times New Roman', Times, serif;
+
+      /* DARK theme (default) — fond quasi-noir teinté prune, accent violet */
+      --bg: #0d0b10;
+      --bg-alt: #110e17;
+      --bg-card: #16121e;
+      --fg: #f2f0f5;
+      --fg-muted: #8a7f96;
+      --fg-subtle: #2e2840;
+      --accent: #996ab4;
+      --accent-light: #b98fd0;
+      --border: rgba(153, 106, 180, 0.14);
+      --overlay-hero: rgba(13, 11, 16, 0.50);
+      --nav-scrolled-bg: rgba(13, 11, 16, 0.90);
+      --cursor-color: #f2f0f5;
+      --cursor-mix: normal;
+      --grain-opacity: 0.045;
+      --parallax-overlay: rgba(13, 11, 16, 0.45);
+      --shadow: 0 32px 64px rgba(0, 0, 0, 0.55);
+    }
+
+    [data-theme="light"] {
+      /* LIGHT theme — parchemin pâle teinté lavande, violet doux */
+      --bg: #f7f4fb;
+      --bg-alt: #fdfbff;
+      --bg-card: #ede8f5;
+      --fg: #1c1424;
+      --fg-muted: #6b5f7a;
+      --fg-subtle: #ddd5ea;
+      --accent: #7a4d9e;
+      --accent-light: #996ab4;
+      --border: rgba(122, 77, 158, 0.14);
+      --overlay-hero: rgba(247, 244, 251, 0.55);
+      --nav-scrolled-bg: rgba(247, 244, 251, 0.90);
+      --cursor-color: #1c1424;
+      --cursor-mix: multiply;
+      --grain-opacity: 0.022;
+      --parallax-overlay: rgba(28, 20, 36, 0.32);
+      --shadow: 0 32px 64px rgba(80, 40, 120, 0.10);
+    }
+
+    /* ==========================================
+   RESET & BASE
+   ========================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+      transition: background 0.5s var(--ease-silk), color 0.5s var(--ease-silk);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ==========================================
+   GRAIN OVERLAY
+   ========================================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      pointer-events: none;
+      opacity: var(--grain-opacity);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      transition: opacity 0.5s;
+    }
+
+    /* ==========================================
+   PAGE OVERLAY
+   ========================================== */
+    #page-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-card);
+      z-index: 900;
+      pointer-events: none;
+      transition: opacity 1.2s var(--ease-silk);
+    }
+
+    #page-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ==========================================
+   CUSTOM CURSOR
+   ========================================== */
+    #cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--cursor-color);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--ease-expo), height 0.3s var(--ease-expo), background 0.5s, opacity 0.3s;
+      mix-blend-mode: var(--cursor-mix);
+    }
+
+    #cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(153, 106, 180, 0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s var(--ease-expo), height 0.5s var(--ease-expo), border-color 0.3s, opacity 0.5s;
+    }
+
+    body.cursor-hover #cursor-dot {
+      width: 14px;
+      height: 14px;
+      background: var(--accent);
+    }
+
+    body.cursor-hover #cursor-ring {
+      width: 56px;
+      height: 56px;
+      border-color: var(--accent);
+    }
+
+    body.cursor-image #cursor-dot {
+      width: 60px;
+      height: 60px;
+      background: rgba(153, 106, 180, 0.15);
+      mix-blend-mode: normal;
+    }
+
+    body.cursor-image #cursor-ring {
+      opacity: 0;
+    }
+
+    /* ==========================================
+   NAVIGATION
+   ========================================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(24px, 5vw, 72px);
+      transition: background 0.5s var(--ease-silk), backdrop-filter 0.5s;
+    }
+
+    nav.scrolled {
+      background: var(--nav-scrolled-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-name);
+      font-size: clamp(22px, 2.8vw, 30px);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--fg);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: clamp(24px, 3vw, 48px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(20px, 2.5vw, 40px);
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg);
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.3s;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s var(--ease-expo);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Dropdown Services in nav */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg);
+      background: none;
+      border: none;
+      cursor: none;
+      padding-bottom: 3px;
+      position: relative;
+      font-family: 'Times New Roman', Times, serif;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-dropdown-toggle::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s var(--ease-expo);
+    }
+
+    .nav-dropdown:hover .nav-dropdown-toggle::after {
+      width: 100%;
+    }
+
+    .nav-chevron {
+      font-size: 10px;
+      transition: transform 0.3s;
+      display: inline-block;
+    }
+
+    .nav-dropdown:hover .nav-chevron {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-4px);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-width: 200px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s var(--ease-silk), transform 0.3s var(--ease-silk);
+      list-style: none;
+      /* Padding top crée un pont invisible entre le bouton et le menu */
+      padding-top: 16px;
+    }
+
+    /* Pont pseudo-élément pour combler le gap */
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -16px;
+      left: 0;
+      right: 0;
+      height: 16px;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .nav-dropdown-menu li a {
+      display: block;
+      padding: 12px 20px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      transition: color 0.3s, background 0.3s;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .nav-dropdown-menu li a:hover {
+      color: var(--accent);
+      background: rgba(153, 106, 180, 0.07);
+    }
+
+    .nav-dropdown-menu li a::after {
+      display: none;
+    }
+
+    /* Dark/Light Toggle */
+    .theme-toggle {
+      width: 44px;
+      height: 24px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      cursor: none;
+      position: relative;
+      transition: border-color 0.3s, background 0.3s;
+      padding: 0;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+    }
+
+    .theme-toggle::before {
+      content: '';
+      position: absolute;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.4s var(--ease-expo), background 0.3s;
+    }
+
+    [data-theme="light"] .theme-toggle::before {
+      transform: translateX(20px);
+    }
+
+    .toggle-icons {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5px;
+      pointer-events: none;
+    }
+
+    .toggle-icons span {
+      font-size: 9px;
+      line-height: 1;
+      opacity: 0.5;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: none;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--fg);
+      transition: transform 0.4s var(--ease-expo), opacity 0.3s;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s var(--ease-silk);
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-name);
+      font-size: clamp(32px, 6vw, 52px);
+      font-style: italic;
+      color: var(--fg);
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent);
+    }
+
+    .mobile-services-label {
+      font-family: var(--font-name);
+      font-size: clamp(32px, 6vw, 52px);
+      font-style: italic;
+      color: var(--fg-muted);
+      cursor: default;
+    }
+
+    .mobile-sublinks {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-top: -20px;
+    }
+
+    .mobile-sublinks a {
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-style: normal;
+      color: var(--fg-muted);
+    }
+
+    /* ==========================================
+   HERO
+   ========================================== */
+    #hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(8, calc((100vh - var(--nav-h)) / 8));
+      gap: 5px;
+      height: 100vh;
+    }
+
+    .hero-cell {
+      overflow: hidden;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 1s var(--ease-silk), transform 1s var(--ease-silk);
+      /* Bords carrés comme demandé */
+      border-radius: 0;
+    }
+
+    .hero-cell.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-cell img {
+      transition: transform 0.8s var(--ease-silk);
+    }
+
+    .hero-cell:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-cell:nth-child(1) {
+      grid-column: 1 / 4;
+      grid-row: 1 / 4;
+    }
+
+    .hero-cell:nth-child(2) {
+      grid-column: 4 / 7;
+      grid-row: 1 / 3;
+    }
+
+    .hero-cell:nth-child(3) {
+      grid-column: 7 / 10;
+      grid-row: 1 / 5;
+    }
+
+    .hero-cell:nth-child(4) {
+      grid-column: 10 / 13;
+      grid-row: 1 / 3;
+    }
+
+    .hero-cell:nth-child(5) {
+      grid-column: 4 / 7;
+      grid-row: 3 / 6;
+    }
+
+    .hero-cell:nth-child(6) {
+      grid-column: 10 / 13;
+      grid-row: 3 / 5;
+    }
+
+    .hero-cell:nth-child(7) {
+      grid-column: 1 / 4;
+      grid-row: 4 / 7;
+    }
+
+    .hero-cell:nth-child(8) {
+      grid-column: 7 / 10;
+      grid-row: 5 / 9;
+    }
+
+    .hero-cell:nth-child(9) {
+      grid-column: 10 / 13;
+      grid-row: 5 / 8;
+    }
+
+    .hero-cell:nth-child(10) {
+      grid-column: 4 / 7;
+      grid-row: 6 / 9;
+    }
+
+    .hero-cell:nth-child(11) {
+      grid-column: 1 / 4;
+      grid-row: 7 / 9;
+    }
+
+    .hero-cell:nth-child(12) {
+      grid-column: 10 / 13;
+      grid-row: 8 / 9;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, var(--overlay-hero) 0%, transparent 70%);
+    }
+
+    .hero-eyebrow {
+      font-size: clamp(11px, 1.3vw, 14px);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg);
+      font-weight: 400;
+      margin-bottom: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s 0.6s var(--ease-silk), transform 1s 0.6s var(--ease-silk);
+      font-family: var(--font-body);
+    }
+
+    .hero-eyebrow .hero-location {
+      font-size: 0.78em;
+      opacity: 0.65;
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 0.15em;
+    }
+
+    .hero-title {
+      font-family: var(--font-name);
+      font-size: clamp(80px, 13vw, 180px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.2s 0.8s var(--ease-silk), transform 1.2s 0.8s var(--ease-silk);
+    }
+
+    .hero-sub {
+      font-size: clamp(10px, 1.2vw, 13px);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg);
+      font-weight: 400;
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s 1.1s var(--ease-silk), transform 1s 1.1s var(--ease-silk);
+      font-family: var(--font-body);
+    }
+
+    .hero-cta {
+      margin-top: 36px;
+      pointer-events: all;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s 1.4s var(--ease-silk), transform 1s 1.4s var(--ease-silk);
+    }
+
+    .hero-cta.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: 1px solid rgba(240, 235, 228, 0.3);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      cursor: none;
+      transition: border-color 0.4s, box-shadow 0.4s, background 0.4s, color 0.4s;
+    }
+
+    [data-theme="light"] .btn-outline {
+      border-color: rgba(28, 20, 36, 0.22);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(153, 106, 180, 0.25);
+      background: rgba(153, 106, 180, 0.08);
+      color: var(--accent);
+    }
+
+    .hero-eyebrow.reveal,
+    .hero-title.reveal,
+    .hero-sub.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: scrollFadeIn 1s 2.2s forwards;
+    }
+
+    @keyframes scrollFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, transparent, var(--fg-muted));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        transform: scaleY(0);
+        transform-origin: top;
+        opacity: 0;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1;
+      }
+    }
+
+    .scroll-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      font-family: var(--font-body);
+    }
+
+    /* ==========================================
+   SECTION SHARED
+   ========================================== */
+    section {
+      padding: clamp(80px, 12vw, 160px) clamp(24px, 6vw, 100px);
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 400;
+      display: block;
+      margin-bottom: 16px;
+      font-family: var(--font-body);
+    }
+
+    .section-title {
+      font-family: var(--font-name);
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.1;
+      color: var(--fg);
+    }
+
+    .reveal-anim {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s var(--ease-silk), transform 1s var(--ease-silk);
+    }
+
+    .reveal-anim.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: 0.15s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.3s;
+    }
+
+    .delay-3 {
+      transition-delay: 0.45s;
+    }
+
+    .delay-4 {
+      transition-delay: 0.6s;
+    }
+
+    .delay-5 {
+      transition-delay: 0.75s;
+    }
+
+    /* ==========================================
+   INTRO BAND
+   ========================================== */
+    #intro {
+      background: var(--bg-card);
+      padding: clamp(60px, 8vw, 120px) clamp(24px, 6vw, 100px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .intro-quote {
+      font-family: var(--font-name);
+      font-size: clamp(26px, 3.5vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-light);
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      border-left: 1px solid var(--accent);
+      padding-left: 32px;
+    }
+
+    .intro-body {
+      color: var(--fg-muted);
+      font-size: clamp(14px, 1.5vw, 16px);
+      line-height: 1.9;
+      font-weight: 400;
+      font-family: var(--font-body);
+    }
+
+    .intro-body p+p {
+      margin-top: 20px;
+    }
+
+    /* ==========================================
+   PORTFOLIO (horizontal scroll)
+   ========================================== */
+    #portfolio {
+      padding: 0;
+      background: var(--bg-alt);
+      transition: background 0.5s var(--ease-silk);
+      height: 300vh;
+      position: relative;
+    }
+
+    .portfolio-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg-alt);
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .portfolio-header {
+      padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 100px) 40px;
+      flex-shrink: 0;
+    }
+
+    .gallery-h-track-container {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      max-height: 65vh;
+    }
+
+    .gallery-h-track {
+      display: flex;
+      gap: 16px;
+      padding: 0 clamp(24px, 6vw, 100px);
+      will-change: transform;
+      align-items: center;
+      height: 100%;
+    }
+
+    .gallery-h-item {
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 0;
+      /* bords carrés */
+      position: relative;
+      cursor: none;
+      display: block;
+      text-decoration: none;
+    }
+
+    .gallery-h-item:nth-child(odd) {
+      width: 380px;
+      height: 500px;
+    }
+
+    .gallery-h-item:nth-child(even) {
+      width: 300px;
+      height: 380px;
+    }
+
+    .gallery-h-item img {
+      transition: transform 0.8s var(--ease-silk);
+    }
+
+    .gallery-h-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-h-item .item-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px 20px 20px;
+      background: linear-gradient(transparent, rgba(13, 11, 16, 0.85));
+      color: #f2f0f5;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--font-body);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s, transform 0.4s var(--ease-expo);
+    }
+
+    .h-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: clamp(24px, 6vw, 100px);
+      right: clamp(24px, 6vw, 100px);
+      height: 1px;
+      background: var(--fg-subtle);
+    }
+
+    .h-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    @media (max-width: 768px) {
+      #portfolio {
+        height: auto !important;
+        padding: clamp(60px, 8vw, 100px) 0;
+      }
+
+      .portfolio-sticky {
+        position: static;
+        height: auto;
+      }
+
+      .gallery-h-track-container {
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: visible;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .gallery-h-track-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gallery-h-track {
+        width: max-content;
+        height: 55vw;
+        transform: none !important;
+      }
+
+      .gallery-h-item:nth-child(odd) {
+        width: 55vw;
+        height: 100%;
+      }
+
+      .gallery-h-item:nth-child(even) {
+        width: 42vw;
+        height: 80%;
+      }
+
+      .h-progress-bar {
+        display: none;
+      }
+    }
+
+    .gallery-h-item:hover .item-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==========================================
+   MASONRY GALLERY
+   ========================================== */
+    #gallery {
+      background: var(--bg);
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+
+    .gallery-filter {
+      display: flex;
+      gap: 24px;
+    }
+
+    .filter-btn {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      background: none;
+      border: none;
+      cursor: none;
+      padding: 4px 0;
+      position: relative;
+      font-family: var(--font-body);
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    .filter-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s var(--ease-expo);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--fg);
+    }
+
+    .filter-btn:hover::after,
+    .filter-btn.active::after {
+      width: 100%;
+    }
+
+    .masonry {
+      columns: 3;
+      column-gap: 14px;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 14px;
+      overflow: hidden;
+      cursor: none;
+      position: relative;
+      border-radius: 0;
+    }
+
+    .masonry-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 11, 16, 0);
+      transition: background 0.4s;
+    }
+
+    .masonry-item:hover::after {
+      background: rgba(80, 40, 110, 0.18);
+    }
+
+    .masonry-item img {
+      transition: transform 0.8s var(--ease-silk);
+      border-radius: 0;
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ==========================================
+   SERVICES
+   ========================================== */
+    #services {
+      background: var(--bg-card);
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .service-card {
+      background: var(--bg-alt);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: none;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.5s var(--ease-expo);
+    }
+
+    .service-card:hover::before {
+      width: 100%;
+    }
+
+    .service-card:hover {
+      background: var(--bg);
+    }
+
+    .service-number {
+      font-family: var(--font-name);
+      font-size: 48px;
+      font-style: italic;
+      color: var(--fg-subtle);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color 0.4s;
+    }
+
+    .service-card:hover .service-number {
+      color: var(--accent);
+    }
+
+    .service-name {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg);
+      font-weight: 400;
+      margin-bottom: 12px;
+      font-family: var(--font-body);
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      font-family: var(--font-body);
+    }
+
+    /* ==========================================
+   ABOUT
+   ========================================== */
+    #about {
+      background: var(--bg-alt);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(60px, 8vw, 140px);
+      align-items: center;
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .about-image-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      max-height: 80vh;
+      animation: floatSubtle 6s ease-in-out infinite;
+    }
+
+    @keyframes floatSubtle {
+
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(0.3deg);
+      }
+    }
+
+    .about-image-wrap img {
+      border-radius: 0;
+    }
+
+    .about-image-accent {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 60%;
+      height: 60%;
+      border: 1px solid var(--accent-light);
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    .about-quote {
+      font-family: var(--font-name);
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.4;
+      margin: 28px 0;
+      padding-left: 24px;
+      border-left: 1px solid var(--accent);
+      opacity: 0.85;
+    }
+
+    .about-text {
+      color: var(--fg-muted);
+      font-size: clamp(14px, 1.4vw, 16px);
+      line-height: 1.9;
+      font-family: var(--font-body);
+    }
+
+    .about-text p+p {
+      margin-top: 16px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-number {
+      font-family: var(--font-name);
+      font-size: clamp(36px, 5vw, 56px);
+      font-style: italic;
+      color: var(--fg);
+      line-height: 1;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      margin-top: 4px;
+      font-family: var(--font-body);
+    }
+
+    /* ==========================================
+   PARALLAX DIVIDER
+   ========================================== */
+    .parallax-section {
+      height: 70vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .parallax-bg {
+      position: absolute;
+      inset: -20%;
+      will-change: transform;
+    }
+
+    .parallax-bg img {
+      height: 140%;
+    }
+
+    .parallax-text-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--parallax-overlay);
+    }
+
+    .parallax-caption {
+      font-family: var(--font-name);
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 400;
+      font-style: italic;
+      color: #f2f0f5;
+      text-align: center;
+      letter-spacing: -0.01em;
+      line-height: 0.9;
+    }
+
+    /* ==========================================
+   CONTACT
+   ========================================== */
+    #contact {
+      background: var(--bg-card);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(60px, 8vw, 140px);
+      align-items: start;
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .contact-intro {
+      color: var(--fg-muted);
+      font-size: clamp(14px, 1.4vw, 16px);
+      line-height: 1.9;
+      margin-top: 24px;
+      font-family: var(--font-body);
+    }
+
+    .contact-details {
+      margin-top: 48px;
+    }
+
+    .contact-detail-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+
+    .contact-detail-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      width: 80px;
+      flex-shrink: 0;
+      font-family: var(--font-body);
+    }
+
+    .contact-detail-value {
+      color: var(--fg-muted);
+      font-size: 14px;
+      font-family: var(--font-body);
+    }
+
+    .contact-detail-value a {
+      transition: color 0.3s;
+    }
+
+    .contact-detail-value a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .form-field {
+      position: relative;
+    }
+
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0 12px 0;
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.4s;
+      resize: none;
+      cursor: none;
+    }
+
+    .form-field textarea {
+      min-height: 100px;
+    }
+
+    .form-field label {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--fg-muted);
+      pointer-events: none;
+      transition: top 0.3s var(--ease-expo), font-size 0.3s, color 0.3s, letter-spacing 0.3s;
+      opacity: 0.6;
+      font-family: var(--font-body);
+    }
+
+    .form-field input:focus~label,
+    .form-field input:not(:placeholder-shown)~label,
+    .form-field textarea:focus~label,
+    .form-field textarea:not(:placeholder-shown)~label {
+      top: 0;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-bottom-color: var(--accent);
+    }
+
+    .form-field::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.4s var(--ease-expo);
+    }
+
+    .form-field:focus-within::after {
+      width: 100%;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 18px 36px;
+      cursor: none;
+      transition: border-color 0.4s, box-shadow 0.4s, background 0.4s, color 0.4s;
+      align-self: flex-start;
+    }
+
+    .btn-submit:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 30px rgba(153, 106, 180, 0.25);
+      background: rgba(153, 106, 180, 0.08);
+      color: var(--accent);
+    }
+
+    /* ==========================================
+   MENTIONS LÉGALES & RGPD
+   ========================================== */
+    #mentions {
+      background: var(--bg);
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .mentions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 100px);
+      margin-top: 60px;
+    }
+
+    .mentions-block h3 {
+      font-family: var(--font-name);
+      font-size: clamp(18px, 2vw, 26px);
+      font-style: italic;
+      color: var(--fg);
+      margin-bottom: 16px;
+    }
+
+    .mentions-block p,
+    .mentions-block address {
+      color: var(--fg-muted);
+      font-size: 14px;
+      line-height: 1.9;
+      font-style: normal;
+      font-family: var(--font-body);
+    }
+
+    .mentions-block a {
+      color: var(--accent);
+      transition: opacity 0.3s;
+    }
+
+    .mentions-block a:hover {
+      opacity: 0.7;
+    }
+
+    /* ==========================================
+   LIGHTBOX
+   ========================================== */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 11, 16, 0.97);
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s var(--ease-silk);
+    }
+
+    #lightbox.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-img-wrap {
+      max-width: 88vw;
+      max-height: 85vh;
+      position: relative;
+    }
+
+    .lightbox-img-wrap img {
+      max-width: 88vw;
+      max-height: 85vh;
+      object-fit: contain;
+      transition: opacity 0.3s;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 40px;
+      height: 40px;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .lb-close::before,
+    .lb-close::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 1px;
+      background: #f2f0f5;
+      transition: background 0.3s;
+    }
+
+    .lb-close::before {
+      transform: rotate(45deg);
+    }
+
+    .lb-close::after {
+      transform: rotate(-45deg);
+    }
+
+    .lb-close:hover::before,
+    .lb-close:hover::after {
+      background: var(--accent);
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: opacity 0.3s;
+    }
+
+    .lb-nav:hover {
+      opacity: 0.6;
+    }
+
+    .lb-prev {
+      left: 16px;
+    }
+
+    .lb-next {
+      right: 16px;
+    }
+
+    .lb-nav::before {
+      content: '';
+      width: 12px;
+      height: 12px;
+      border-top: 1px solid #f2f0f5;
+      border-right: 1px solid #f2f0f5;
+    }
+
+    .lb-prev::before {
+      transform: rotate(-135deg) translateY(-3px);
+    }
+
+    .lb-next::before {
+      transform: rotate(45deg) translateY(-3px);
+    }
+
+    .lb-counter {
+      position: absolute;
+      bottom: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: rgba(242, 240, 245, 0.4);
+    }
+
+    /* ==========================================
+   FOOTER
+   ========================================== */
+    footer {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 40px clamp(24px, 6vw, 100px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      transition: background 0.5s var(--ease-silk);
+    }
+
+    .footer-logo {
+      font-family: var(--font-name);
+      font-size: 24px;
+      font-style: italic;
+      color: var(--fg);
+      opacity: 0.6;
+    }
+
+    .footer-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--fg-muted);
+      letter-spacing: 0.08em;
+      font-family: var(--font-body);
+    }
+
+    .footer-legal {
+      font-size: 11px;
+      color: var(--fg-muted);
+      letter-spacing: 0.06em;
+      font-family: var(--font-body);
+      opacity: 0.7;
+    }
+
+    .footer-legal a {
+      color: var(--fg-muted);
+      transition: color 0.3s;
+    }
+
+    .footer-legal a:hover {
+      color: var(--accent);
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-instagram {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.3s;
+    }
+
+    .footer-instagram:hover {
+      color: var(--accent);
+    }
+
+    .footer-instagram svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* ==========================================
+   FLOATING BTN
+   ========================================== */
+    .contact-fab {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 500;
+      cursor: none;
+      font-size: 18px;
+      color: #f2f0f5;
+      box-shadow: 0 8px 32px rgba(153, 106, 180, 0.45);
+      transition: transform 0.3s var(--ease-expo), box-shadow 0.3s;
+      text-decoration: none;
+    }
+
+    .contact-fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 40px rgba(153, 106, 180, 0.6);
+    }
+
+    /* ==========================================
+   RESPONSIVE
+   ========================================== */
+    @media (max-width: 1024px) {
+      .masonry {
+        columns: 2;
+      }
+
+      #about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image-wrap {
+        max-height: 50vh;
+        aspect-ratio: 4/3;
+        animation: none;
+      }
+
+      #contact {
+        grid-template-columns: 1fr;
+      }
+
+      #intro {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mentions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-right {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(10, 10vh);
+      }
+
+      .hero-cell:nth-child(1) {
+        grid-column: 1 / 4;
+        grid-row: 1 / 4;
+      }
+
+      .hero-cell:nth-child(2) {
+        grid-column: 4 / 7;
+        grid-row: 1 / 3;
+      }
+
+      .hero-cell:nth-child(3) {
+        grid-column: 1 / 4;
+        grid-row: 4 / 7;
+      }
+
+      .hero-cell:nth-child(4) {
+        grid-column: 4 / 7;
+        grid-row: 3 / 6;
+      }
+
+      .hero-cell:nth-child(5) {
+        grid-column: 1 / 4;
+        grid-row: 7 / 10;
+      }
+
+      .hero-cell:nth-child(6) {
+        grid-column: 4 / 7;
+        grid-row: 6 / 9;
+      }
+
+      .hero-cell:nth-child(7) {
+        grid-column: 1 / 3;
+        grid-row: 10 / 11;
+      }
+
+      .hero-cell:nth-child(8) {
+        grid-column: 3 / 5;
+        grid-row: 9 / 11;
+      }
+
+      .hero-cell:nth-child(9) {
+        grid-column: 5 / 7;
+        grid-row: 9 / 11;
+      }
+
+      .hero-cell:nth-child(n+10) {
+        display: none;
+      }
+
+      .masonry {
+        columns: 1;
+      }
+
+      .gallery-filter {
+        display: none;
+      }
+
+      .gallery-header {
+        justify-content: flex-start;
+      }
+
+      .gallery-h-item:nth-child(odd) {
+        width: 260px;
+        height: 340px;
+      }
+
+      .gallery-h-item:nth-child(even) {
+        width: 200px;
+        height: 260px;
+      }
+
+      .about-stats {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .footer-right {
+        align-items: center;
+      }
+
+      #cursor-dot,
+      #cursor-ring {
+        display: none;
+      }
+
+      body {
+        cursor: auto;
+      }
+
+      * {
+        cursor: auto !important;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    /* ── Cookie Banner ─────────────────────────── */
+    #cookie-banner {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9500;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      padding: 20px clamp(20px, 5vw, 72px);
+      box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    #cookie-banner.cb-show {
+      display: block;
+    }
+
+    .cb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .cb-text {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .cb-title {
+      font-family: var(--font-name);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--fg);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cb-desc {
+      font-size: 12px;
+      color: var(--fg-muted);
+      line-height: 1.7;
+      font-family: var(--font-body);
+    }
+
+    .cb-desc a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
+    .cb-btns {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .cb-btn {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 11px 20px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--fg-muted);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .cb-btn:hover {
+      border-color: var(--fg-muted);
+      color: var(--fg);
+    }
+
+    .cb-btn-ok {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .cb-btn-ok:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+    }
+
+    /* ── Modale RGPD ───────────────────────────── */
+    #rgpd-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9600;
+      align-items: flex-end;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    #rgpd-modal.rm-open {
+      display: flex;
+      pointer-events: all;
+    }
+
+    .rm-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+    }
+
+    .rm-drawer {
+      position: relative;
+      z-index: 1;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .rm-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .rm-title {
+      font-family: var(--font-name);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--fg);
+    }
+
+    .rm-tabs {
+      display: flex;
+      border: 1px solid var(--border);
+    }
+
+    .rm-tab {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--border);
+      color: var(--fg-muted);
+      padding: 9px 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rm-tab:last-child {
+      border-right: none;
+    }
+
+    .rm-tab.rm-active,
+    .rm-tab:hover {
+      background: rgba(153, 106, 180, 0.12);
+      color: var(--accent);
+    }
+
+    .rm-close {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      width: 34px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .rm-close:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .rm-body {
+      overflow-y: auto;
+      padding: 32px 36px;
+      flex: 1;
+    }
+
+    .rm-panel {
+      display: none;
+    }
+
+    .rm-panel.rm-active {
+      display: block;
+    }
+
+    .rm-panel h4 {
+      font-family: var(--font-name);
+      font-size: 18px;
+      font-style: italic;
+      color: var(--accent-light);
+      margin: 24px 0 8px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rm-panel h4:first-child {
+      margin-top: 0;
+    }
+
+    .rm-panel p,
+    .rm-panel address {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.9;
+      font-style: normal;
+      margin-bottom: 10px;
+    }
+
+    .rm-panel a {
+      color: var(--accent);
+    }
+
+    .rm-summary {
+      background: rgba(153, 106, 180, 0.08);
+      border-left: 2px solid var(--accent);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--fg-muted);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .rm-reopen {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--fg-muted);
+      padding: 10px 18px;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .rm-reopen:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    @media(max-width:600px) {
+      .cb-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .rm-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .rm-body {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- Page overlay -->
+  <div id="page-overlay"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" role="dialog" aria-label="Visionneuse d'image">
+    <div class="lightbox-img-wrap">
+      <img id="lb-img" src="" alt="">
+      <div class="lb-counter" id="lb-counter">1 / 12</div>
+    </div>
+    <button class="lb-close" id="lb-close" aria-label="Fermer"></button>
+    <button class="lb-nav lb-prev" id="lb-prev" aria-label="Précédent"></button>
+    <button class="lb-nav lb-next" id="lb-next" aria-label="Suivant"></button>
+  </div>
+
+  <!-- Navigation — ordre : Accueil, À propos, Mes services, Contact, Mentions légales -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo"><img src="/Logos.png" class="logo"></a>
+    <ul class="nav-links">
+      <li><a href="#hero">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-toggle" aria-expanded="false">
+          Mes services <span class="nav-chevron">▾</span>
+        </button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="#service-produit">Produit</a></li>
+          <li><a href="#service-culinaire">Culinaire</a></li>
+          <li><a href="#service-bijoux">Montres &amp; Bijoux</a></li>
+          <li><a href="#service-tirages">Tirages d'art</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#mentions">Mentions légales</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Basculer le thème">
+        <div class="toggle-icons">
+          <span>☽</span>
+          <span>☀</span>
+        </div>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero" class="mobile-link">Accueil</a>
+    <a href="#about" class="mobile-link">À propos</a>
+    <span class="mobile-services-label">Mes services</span>
+    <div class="mobile-sublinks">
+      <a href="#service-produit" class="mobile-link">Produit</a>
+      <a href="#service-culinaire" class="mobile-link">Culinaire</a>
+      <a href="#service-bijoux" class="mobile-link">Montres &amp; Bijoux</a>
+      <a href="#service-tirages" class="mobile-link">Tirages d'art</a>
+    </div>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#mentions" class="mobile-link">Mentions légales</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-grid" id="hero-grid">
+      <div class="hero-cell"><img src="https://picsum.photos/600/900?random=10" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/700?random=11" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/600/800?random=12" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/600?random=13" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/700?random=14" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/550?random=15" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/700?random=16" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/600/900?random=17" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/700?random=18" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/700?random=19" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/500/600?random=20" alt="" loading="eager"></div>
+      <div class="hero-cell"><img src="https://picsum.photos/400/500?random=21" alt="" loading="eager"></div>
+    </div>
+
+    <div class="hero-overlay">
+      <!-- Sous le nom : "Photographe Fine Art" + localisation en plus petit -->
+      <span class="hero-eyebrow">
+        Photographe Fine Art
+        <span class="hero-location">(Corrèze, Nouvelle-Aquitaine)</span>
+      </span>
+      <h1 class="hero-title">Stéph<br>Laval</h1>
+      <p class="hero-sub">Art · Photographie · Perception</p>
+      <!-- Pas de bouton "Portfolio" sur le hero — uniquement lien contact en bas -->
+      <div class="hero-cta">
+        <a href="#contact" class="btn-outline">Prendre contact</a>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      <span class="scroll-label">Défiler</span>
+    </div>
+  </section>
+
+  <!-- ===== INTRO ===== -->
+  <section id="intro">
+    <blockquote class="intro-quote reveal-anim">
+      "Capturer l'authenticité, révéler les émotions — une image à la fois."
+    </blockquote>
+    <div class="intro-body reveal-anim delay-1">
+      <p>Passionnée de photographie, de Formule 1 et de nature, reconvertie après 19 ans dans le milieu hospitalier.
+        Diplômée de l'École d'Arts Appliqués de Reims, photographe professionnelle depuis 2022.</p>
+      <p>Je capture avant tout l'authenticité et les émotions, à travers la lumière naturelle. Mes univers : portraits,
+        macro, paysages, nature et projets créatifs.</p>
+      <p>Pour les entreprises, une stratégie visuelle sur-mesure pour valoriser vos services et renforcer votre image de
+        marque.</p>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO (horizontal scroll) ===== -->
+  <!-- Chaque item est un lien cliquable vers la page de la spécialité -->
+  <section id="portfolio">
+    <div class="portfolio-sticky">
+      <div class="portfolio-header">
+        <span class="section-eyebrow reveal-anim">Travaux sélectionnés</span>
+        <h2 class="section-title reveal-anim delay-1">Séries récentes</h2>
+      </div>
+      <div class="gallery-h-track-container">
+        <div class="gallery-h-track" id="h-track">
+          <a href="galerie-culinaire.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/900?random=2" alt="Fragments de Goût" loading="lazy">
+            <div class="item-label">Fragments de Goût</div>
+          </a>
+          <a href="galerie-produit.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/1225?random=3" alt="Ce qui Coule et Reste" loading="lazy">
+            <div class="item-label">Ce qui Coule et Reste</div>
+          </a>
+          <a href="galerie-bijoux.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/700?random=4" alt="La Peau Étoilée" loading="lazy">
+            <div class="item-label">La Peau Étoilée</div>
+          </a>
+          <a href="galerie-produit.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/800?random=5" alt="Grâce Quotidienne" loading="lazy">
+            <div class="item-label">Grâce Quotidienne</div>
+          </a>
+          <a href="galerie-portraits.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/600?random=6" alt="Portraits" loading="lazy">
+            <div class="item-label">Portraits</div>
+          </a>
+          <a href="galerie-culinaire.html" class="gallery-h-item">
+            <img src="https://picsum.photos/600/900?random=7" alt="Recherches créatives" loading="lazy">
+            <div class="item-label">Recherches créatives</div>
+          </a>
+          <a href="tirages-art.html" class="gallery-h-item">
+            <img src="https://picsum.photos/500/1000?random=8" alt="Tirage d'art" loading="lazy">
+            <div class="item-label">Tirage d'art</div>
+          </a>
+        </div>
+        <div class="h-progress-bar">
+          <div class="h-progress-fill" id="h-progress"></div>
+        </div>
+      </div><!-- /.gallery-h-track-container -->
+    </div><!-- /.portfolio-sticky -->
+  </section><!-- /#portfolio -->
+
+  <!-- ===== MASONRY GALLERY ===== -->
+  <section id="gallery">
+    <div class="gallery-header">
+      <div>
+        <span class="section-eyebrow reveal-anim">Portfolio</span>
+        <h2 class="section-title reveal-anim delay-1">L'Archive</h2>
+      </div>
+      <!-- Filtres mis à jour : Produit, Culinaire, Montres & Bijoux, Portraits -->
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="produit">Produit</button>
+        <button class="filter-btn" data-filter="culinaire">Culinaire</button>
+        <button class="filter-btn" data-filter="bijoux">Montres &amp; Bijoux</button>
+        <button class="filter-btn" data-filter="portrait">Portraits</button>
+      </div>
+    </div>
+
+    <div class="masonry" id="masonry">
+      <div class="masonry-item reveal-anim" data-category="culinaire"><img src="https://picsum.photos/700/900?random=30"
+          alt="Photographie culinaire" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-1" data-category="portrait"><img
+          src="https://picsum.photos/700/1000?random=31" alt="Portrait" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-2" data-category="produit"><img
+          src="https://picsum.photos/700/800?random=32" alt="Produit beauté" loading="lazy"></div>
+      <div class="masonry-item reveal-anim" data-category="bijoux"><img src="https://picsum.photos/700/700?random=33"
+          alt="Montres et bijoux" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-1" data-category="portrait"><img
+          src="https://picsum.photos/700/900?random=34" alt="Portrait doux" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-2" data-category="culinaire"><img
+          src="https://picsum.photos/700/600?random=35" alt="Gastronomie" loading="lazy"></div>
+      <div class="masonry-item reveal-anim" data-category="bijoux"><img src="https://picsum.photos/700/950?random=36"
+          alt="Bijoux" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-1" data-category="produit"><img
+          src="https://picsum.photos/700/700?random=37" alt="Produit" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-2" data-category="portrait"><img
+          src="https://picsum.photos/700/800?random=38" alt="Portrait lumière" loading="lazy"></div>
+      <div class="masonry-item reveal-anim" data-category="culinaire"><img src="https://picsum.photos/700/600?random=39"
+          alt="Plat gastronomique" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-1" data-category="produit"><img
+          src="https://picsum.photos/700/850?random=40" alt="Soin beauté" loading="lazy"></div>
+      <div class="masonry-item reveal-anim delay-2" data-category="bijoux"><img
+          src="https://picsum.photos/700/700?random=41" alt="Montre" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ===== PARALLAX DIVIDER ===== -->
+  <div class="parallax-section" id="parallax-1">
+    <div class="parallax-bg" id="par-bg-1">
+      <img src="https://picsum.photos/1800/1200?random=50" alt="" loading="lazy">
+    </div>
+    <div class="parallax-text-overlay">
+      <p class="parallax-caption reveal-anim">Art &amp;<br>Perception</p>
+    </div>
+  </div>
+
+  <!-- ===== SERVICES ===== -->
+  <!-- Ordre : Produit, Culinaire, Montres & Bijoux, Tirages d'art -->
+  <section id="services">
+    <span class="section-eyebrow reveal-anim">Ce que je propose</span>
+    <h2 class="section-title reveal-anim delay-1">Mes Services</h2>
+
+    <div class="services-grid">
+      <div class="service-card reveal-anim" id="service-produit">
+        <div class="service-number">01</div>
+        <div class="service-name">Produit</div>
+        <div class="service-desc">Valorisation de vos produits avec des compositions élégantes et soignées :
+          cosmétiques, soins, packagings — chaque détail mis en lumière.</div>
+      </div>
+      <div class="service-card reveal-anim delay-1" id="service-culinaire">
+        <div class="service-number">02</div>
+        <div class="service-name">Culinaire</div>
+        <div class="service-desc">Sublimation de vos créations gastronomiques avec une maîtrise de la lumière naturelle
+          et un sens aigu du détail.</div>
+      </div>
+      <div class="service-card reveal-anim delay-2" id="service-bijoux">
+        <div class="service-number">03</div>
+        <div class="service-name">Montres &amp; Bijoux</div>
+        <div class="service-desc">Mise en valeur de vos créations joaillières et horlogères avec un éclairage précis
+          révélant chaque détail, reflet et matière.</div>
+      </div>
+      <div class="service-card reveal-anim delay-3" id="service-tirages">
+        <div class="service-number">04</div>
+        <div class="service-name">Tirages d'art</div>
+        <div class="service-desc">Tirages fine art sur mesure, éditions limitées, pour collectionneurs et amateurs d'art
+          photographique — également accessible aux particuliers.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="about-image-wrap reveal-anim">
+      <img src="https://picsum.photos/800/800?random=8" alt="Stéph Laval — Autoportrait" loading="lazy">
+      <div class="about-image-accent"></div>
+    </div>
+    <div class="about-content">
+      <span class="section-eyebrow reveal-anim">La photographe</span>
+      <h2 class="section-title reveal-anim delay-1">À propos<br>de Stéph</h2>
+      <blockquote class="about-quote reveal-anim delay-2">
+        "Créer des images qui racontent une histoire, qui touchent et qui mettent en valeur."
+      </blockquote>
+      <div class="about-text reveal-anim delay-3">
+        <p>Photographe fine art, ma personnalité douce et authentique imprègne mes images, soigneusement conçues
+          pour raconter une histoire ou transmettre une idée.</p>
+        <p>Lumière, contraste, souci du détail : mes bases pour créer des visuels percutants qui vous correspondent.
+          Chaque photographie est une œuvre réfléchie pour valoriser vos produits et services.</p>
+        <p>Patiente et créative, je capture chaque détail avec intention : lignes, couleurs, formes, reflets, ombres.
+          Tout
+          est pensé autour du sujet pour une exploration esthétique et émotionnelle.
+          J’établie une connexion en vous racontant des histoires avec des images sublimées.</p>
+        <p>Curieuse, mes inspirations sont issues de la peinture, du dessin, des livres, de la musique, de
+          l’architecture,
+          de la nature… de 1874 à nos jours.</p>
+        <p>Que ce soit en studio ou en extérieur, je transforme mes idées créatives en images percutantes et de qualité.
+          Mon expertise va au-delà de la photographie : je travaille également en post-production pour garantir la
+          perfection de chaque visuel que je livre.</p>
+      </div>
+      <div class="about-stats reveal-anim delay-3">
+        <div class="stat">
+          <span class="stat-number">4+</span>
+          <p class="stat-label">Ans d'expérience</p>
+        </div>
+        <div class="stat">
+          <span class="stat-number">4</span>
+          <p class="stat-label">Spécialités</p>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100%</span>
+          <p class="stat-label">Sur-mesure</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div>
+      <span class="section-eyebrow reveal-anim">Travaillons ensemble</span>
+      <h2 class="section-title reveal-anim delay-1">Créons<br>ensemble.</h2>
+      <!-- Formule demandée par la cliente -->
+      <p class="contact-intro reveal-anim delay-2">
+        Besoin d'un complément d'information, d'un devis, de passer commande ? Contactez-moi, c'est avec plaisir que je
+        répondrai à vos questions et à vos projets photographiques.
+      </p>
+      <div class="contact-details reveal-anim delay-3">
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Email</span>
+          <span class="contact-detail-value"><a href="mailto:stephlaval@free.fr">stephlaval@free.fr</a></span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Téléphone</span>
+          <span class="contact-detail-value"><a href="tel:+33633966535">06 33 96 65 35</a></span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Studio</span>
+          <span class="contact-detail-value">Ussel — Corrèze (19)</span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Instagram</span>
+          <span class="contact-detail-value"><a href="https://www.instagram.com/stephlaval1982/" target="_blank"
+              rel="noopener">@stephlaval1982</a></span>
+        </div>
+        <div class="contact-detail-item">
+          <span class="contact-detail-label">Booking</span>
+          <span class="contact-detail-value">Sur rendez-vous</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal-anim delay-1" id="contact-form" action="mailto:stephlaval@free.fr" method="post">
+      <div class="form-field">
+        <input type="text" id="name" name="name" placeholder=" " required>
+        <label for="name">Votre nom</label>
+      </div>
+      <div class="form-field">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Votre email</label>
+      </div>
+      <div class="form-field">
+        <input type="text" id="subject" name="subject" placeholder=" ">
+        <label for="subject">Type de projet</label>
+      </div>
+      <div class="form-field">
+        <textarea id="message" name="message" placeholder=" " rows="4"></textarea>
+        <label for="message">Votre message</label>
+      </div>
+      <button type="submit" class="btn-submit">Envoyer →</button>
+    </form>
+  </section>
+
+  <!-- ===== MENTIONS LÉGALES & RGPD ===== -->
+  <section id="mentions">
+    <span class="section-eyebrow reveal-anim">Transparence &amp; légalité</span>
+    <h2 class="section-title reveal-anim delay-1">Mentions légales<br>&amp; RGPD</h2>
+
+    <div class="mentions-grid">
+      <div class="mentions-block reveal-anim">
+        <h3>Éditeur du site</h3>
+        <address>
+          <strong>Stéphanie Laval (EI)</strong><br>
+          Photographe Fine Art<br>
+          19200 Ussel<br><br>
+          Tél. : <a href="tel:+33633966535">06 33 96 65 35</a><br>
+          Email : <a href="mailto:stephlaval@free.fr">stephlaval@free.fr</a><br><br>
+          SIRET : 922 840 079 00029
+        </address>
+      </div>
+      <div class="mentions-block reveal-anim delay-1">
+        <h3>Hébergeur</h3>
+        <address>
+          Adobe Inc. — Adobe Creative Cloud<br>
+          345 Park Avenue, San Jose, CA 95110 — États-Unis<br>
+          <a href="https://www.adobe.com/contact.html" target="_blank" rel="noopener">adobe.com/contact</a>
+        </address>
+      </div>
+      <div class="mentions-block reveal-anim delay-2">
+        <h3>Propriété intellectuelle</h3>
+        <p>Toutes les photos présentées sur ce site sont la propriété exclusive de Stéph Laval (EI). Toute reproduction
+          sans consentement fera l'objet de poursuites. © Stéph Laval — 2026.</p>
+      </div>
+      <div class="mentions-block reveal-anim delay-3">
+        <h3>Données personnelles &amp; Cookies</h3>
+        <p>Les informations recueillies sont enregistrées par Stéphanie Laval pour répondre à vos messages et demandes, et conservées pendant la durée du traitement de nos échanges. Vos données ne sont jamais vendues, louées ou échangées à des tiers. Les cookies respectent votre vie privée et mesurent l'audience du site pour en améliorer le contenu, uniquement avec votre consentement préalable.</p>
+      </div>
+    </div>
+
+    <div class="mentions-expand-row" style="margin-top:56px;display:flex;align-items:center;gap:24px;">
+      <span style="flex:1;height:1px;background:var(--border);display:block;"></span>
+      <button type="button" id="btn-open-rgpd"
+        style="font-family:var(--font-body);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--fg-muted);padding:14px 28px;cursor:none;display:inline-flex;align-items:center;gap:10px;transition:border-color 0.4s,color 0.4s;">
+        Politique complète &amp; RGPD →
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span class="footer-logo">Stéph Laval</span>
+    <div class="footer-right">
+      <!-- Copyright conforme + CPI — retrait de "Tous droits réservés" non légal -->
+      <span class="footer-copy">© Stéph Laval — 2026 | Stéphanie Laval (EI) — Photographe Fine Art | N° CPI : <em>[à
+          compléter]</em></span>
+      <span class="footer-legal">
+        <a href="#mentions" id="footer-rgpd-link">Mentions légales &amp; RGPD</a>
+        &nbsp;·&nbsp;
+        <a href="https://www.instagram.com/stephlaval1982/" target="_blank" rel="noopener" class="footer-instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.851s-.012 3.585-.07 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.585 2.163 15.205 2.163 12s.012-3.584.07-4.85c.062-1.366.333-2.633 1.308-3.608C4.516 2.497 5.783 2.225 7.15 2.163 8.416 2.105 8.796 2.163 12 2.163zm0-2.163c-3.259 0-3.667.014-4.947.072-1.539.07-3.065.383-4.204 1.522C1.71 2.733 1.397 4.259 1.327 5.798 1.269 7.078 1.255 7.486 1.255 12c0 4.514.014 4.922.072 6.202.07 1.539.383 3.065 1.522 4.204 1.139 1.139 2.665 1.452 4.204 1.522C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.539-.07 3.065-.383 4.204-1.522 1.139-1.139 1.452-2.665 1.522-4.204.058-1.28.072-1.688.072-6.202s-.014-4.922-.072-6.202c-.07-1.539-.383-3.065-1.522-4.204C20.012.455 18.486.142 16.947.072 15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+          </svg>
+          @stephlaval1982
+        </a>
+      </span>
+    </div>
+  </footer>
+
+  <!-- Contact FAB -->
+  <a href="#contact" class="contact-fab" aria-label="Prendre contact">✉</a>
+
+  <!-- ===== COOKIE BANNER ===== -->
+  <div id="cookie-banner">
+    <div class="cb-row">
+      <div class="cb-text">
+        <span class="cb-title">Ce site utilise des cookies</span>
+        <p class="cb-desc">Nous utilisons des cookies pour améliorer votre expérience.
+          <a href="#" id="cb-link-rgpd">Politique de confidentialité</a>
+        </p>
+      </div>
+      <div class="cb-btns">
+        <button class="cb-btn" id="cb-refuse">Refuser</button>
+        <button class="cb-btn cb-btn-ok" id="cb-accept">Accepter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODALE RGPD ===== -->
+  <div id="rgpd-modal">
+    <div class="rm-backdrop" id="rm-backdrop"></div>
+    <div class="rm-drawer">
+      <div class="rm-head">
+        <span class="rm-title">Politique de confidentialité &amp; RGPD</span>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <div class="rm-tabs">
+            <button class="rm-tab rm-active" data-tab="legal">Mentions légales</button>
+            <button class="rm-tab" data-tab="rgpd">Politique RGPD</button>
+            <button class="rm-tab" data-tab="cookies">Cookies</button>
+          </div>
+          <button class="rm-close" id="rm-close">✕</button>
+        </div>
+      </div>
+      <div class="rm-body">
+        <div class="rm-panel rm-active" id="rm-tab-legal">
+          <h4>Éditeur du site</h4>
+          <address><strong>Stéphanie Laval (EI)</strong> — Photographe Fine Art<br>
+            21 bis rue Denis Papin, 19200 Ussel<br>
+            Tél. : <a href="tel:+33633966535">06 33 96 65 35</a> —
+            Email : <a href="mailto:stephlaval@free.fr">stephlaval@free.fr</a><br>
+            SIRET : 922 840 079 00029</address>
+          <h4>Hébergeur</h4>
+          <address>Adobe Inc. — Adobe Creative Cloud<br>
+            345 Park Avenue, San Jose, CA 95110 — États-Unis<br>
+            <a href="https://www.adobe.com/contact.html" target="_blank" rel="noopener">adobe.com/contact</a>
+          </address>
+          <h4>Propriété intellectuelle</h4>
+          <p>Toutes les photographies sont la propriété exclusive de Stéphanie Laval (EI). Toute reproduction sans
+            autorisation est interdite. © Stéph Laval — 2026.</p>
+        </div>
+                <div class="rm-panel" id="rm-tab-rgpd">
+          <div class="rm-summary">Stéph Laval Photographie recueille uniquement les données nécessaires à l'utilisation des services du site. Vos données ne sont jamais vendues, louées ou échangées à des tiers.</div>
+
+          <h4>1 — Responsable de traitement</h4>
+          <address>
+            <strong>Stéphanie Laval (EI)</strong><br>
+            21 bis rue Denis Papin — 19200 Ussel<br>
+            Tél. : <a href="tel:+33633966535">06 33 96 65 35</a><br>
+            Email : <a href="mailto:stephlaval@free.fr">stephlaval@free.fr</a><br>
+            SIRET : 922 840 079 00029
+          </address>
+
+          <h4>2 — Finalités du traitement</h4>
+          <p>Stéph Laval Photographie recueille uniquement les données nécessaires à l'utilisation des services du site. Vos données peuvent être traitées :</p>
+          <p><strong>(a)</strong> aux fins de vous fournir les informations ou services demandés (notamment l'envoi d'informations) ;<br>
+          <strong>(b)</strong> aux fins de livraison de vos commandes ;<br>
+          <strong>(c)</strong> aux fins de vous contacter dans le cadre du support client.</p>
+          <p>Vos données ne sont jamais transmises à un tiers, à l'exception des sous-traitants intervenant dans la fabrication et la livraison de vos commandes. Ni Stéph Laval Photographie, ni ses sous-traitants, ne procèdent à la commercialisation de ces données.</p>
+
+          <h4>3 — Gestion des données du formulaire</h4>
+          <p>Les informations recueillies sur ce formulaire sont enregistrées dans un fichier informatisé par Stéphanie Laval pour répondre à vos messages et demandes. Les données sont conservées pendant la durée du traitement de nos échanges.</p>
+
+          <h4>4 — Vos droits (informatique &amp; libertés)</h4>
+          <p><strong>Droit d'accès :</strong> vous pouvez accéder aux informations personnelles vous concernant sur demande, sous réserve de justifier de votre identité.</p>
+          <p><strong>Droit de rectification :</strong> vous pouvez demander la rectification, la mise à jour, le verrouillage ou l'effacement de données inexactes, incomplètes ou obsolètes. Vous pouvez également définir des directives relatives au sort de vos données après votre décès.</p>
+          <p><strong>Retrait du consentement :</strong> vous pouvez retirer à tout moment votre consentement en effectuant une demande écrite, datée et signée, accompagnée d'une copie de votre titre d'identité (avec signature), en précisant l'adresse de réponse souhaitée, à :</p>
+          <address>
+            Stéphanie Laval — <a href="mailto:stephlaval@free.fr">stephlaval@free.fr</a><br>
+            21 bis rue Denis Papin — 19200 Ussel
+          </address>
+          <p>Pour tout modèle de courrier, consultez : <a href="https://www.cnil.fr" target="_blank" rel="noopener">www.cnil.fr</a></p>
+
+          <h4>5 — Délai de réponse</h4>
+          <p>Stéph Laval Photographie s'engage à répondre à toute demande dans un délai ne dépassant pas <strong>1 mois</strong> à compter de la réception de votre demande.</p>
+        </div>
+
+                <div class="rm-panel" id="rm-tab-cookies">
+          <div class="rm-summary">Vos préférences sont mémorisées et modifiables à tout moment. Vous avez le droit de les gérer à tout moment.</div>
+
+          <h4>Cookies nécessaires</h4>
+          <p>Indispensables au fonctionnement du site (mémorisation de vos préférences de consentement). Ils ne peuvent pas être désactivés.</p>
+
+          <h4>Cookies analytiques</h4>
+          <p>Les cookies respectent votre vie privée. Ils mesurent l'audience de mon site pour en améliorer le contenu. Je m'engage à ne collecter et traiter vos données qu'avec votre consentement préalable.</p>
+
+          <h4>Propriété intellectuelle</h4>
+          <p>Toutes les photos présentées sur ce site sont la propriété de <strong>Stéph Laval (EI)</strong>. Toute utilisation sans consentement préalable fera l'objet de poursuites.</p>
+
+          <h4>Modifier mes préférences</h4>
+          <button class="rm-reopen" id="rm-reopen-cookies">⚙ Gérer mes cookies</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    /* ==========================================
+       JAVASCRIPT
+       ========================================== */
+
+    // ── Cursor ──────────────────────────────────
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px';
+      dot.style.top = my + 'px';
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+
+    document.querySelectorAll('a, button, .filter-btn, .service-card').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+    document.querySelectorAll('.masonry-item, .hero-cell, .gallery-h-item').forEach(el => {
+      el.addEventListener('mouseenter', () => { document.body.classList.remove('cursor-hover'); document.body.classList.add('cursor-image'); });
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-image'));
+    });
+
+    // ── Theme Toggle ──────────────────────────────
+    const htmlEl = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('theme') || 'dark';
+    htmlEl.setAttribute('data-theme', saved);
+
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      htmlEl.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    // ── Page load ────────────────────────────────
+    // L'overlay se cache immédiatement, sans attendre les images
+    document.getElementById('page-overlay').classList.add('hidden');
+
+    // DOMContentLoaded est déjà passé (le script est en fin de body)
+    // On lance les animations directement
+    document.querySelectorAll('.hero-cell').forEach((cell, i) => {
+      setTimeout(() => cell.classList.add('visible'), 100 + i * 70);
+    });
+    setTimeout(() => {
+      document.querySelector('.hero-eyebrow')?.classList.add('reveal');
+      document.querySelector('.hero-title')?.classList.add('reveal');
+      document.querySelector('.hero-sub')?.classList.add('reveal');
+      document.querySelector('.hero-cta')?.classList.add('reveal');
+    }, 400);
+
+    // ── Nav scroll ────────────────────────────────
+    const navEl = document.getElementById('nav');
+    let scrollTick = false;
+    window.addEventListener('scroll', () => {
+      if (!scrollTick) {
+        requestAnimationFrame(() => {
+          navEl.classList.toggle('scrolled', window.scrollY > 60);
+          scrollTick = false;
+        });
+        scrollTick = true;
+      }
+    }, { passive: true });
+
+    // ── Nav dropdown accessibility ────────────────
+    document.querySelectorAll('.nav-dropdown-toggle').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', String(!expanded));
+      });
+    });
+
+    // ── Hamburger ────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── IntersectionObserver reveal ──────────────
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal-anim').forEach(el => revealObs.observe(el));
+
+    // ── Hero parallax ─────────────────────────────
+    const heroGrid = document.getElementById('hero-grid');
+    let heroTick = false;
+    document.addEventListener('mousemove', e => {
+      if (window.innerWidth < 768 || heroTick) return;
+      heroTick = true;
+      requestAnimationFrame(() => {
+        const cx = (e.clientX / window.innerWidth - 0.5) * 14;
+        const cy = (e.clientY / window.innerHeight - 0.5) * 10;
+        heroGrid.style.transform = `translate(${cx}px, ${cy}px)`;
+        heroTick = false;
+      });
+    });
+
+    // ── Horizontal scroll gallery ─────────────────
+    const hTrack = document.getElementById('h-track');
+    const hSection = document.getElementById('portfolio');
+    const hProgress = document.getElementById('h-progress');
+    let hTick = false;
+
+    function updateHScroll() {
+      if (window.innerWidth < 768) { hTick = false; return; }
+      const rect = hSection.getBoundingClientRect();
+      const scrollableHeight = rect.height - window.innerHeight;
+      if (scrollableHeight <= 0) { hTick = false; return; }
+
+      // progress: 0 quand la section entre, 1 quand elle sort
+      const progress = Math.max(0, Math.min(1, -rect.top / scrollableHeight));
+      const maxScroll = hTrack.scrollWidth - hTrack.parentElement.clientWidth;
+      hTrack.style.transform = `translateX(-${progress * maxScroll}px)`;
+      if (hProgress) hProgress.style.width = (progress * 100) + '%';
+      hTick = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!hTick) { requestAnimationFrame(updateHScroll); hTick = true; }
+    }, { passive: true });
+    updateHScroll();
+
+    // ── Parallax divider ─────────────────────────
+    const parSection = document.getElementById('parallax-1');
+    const parBg = document.getElementById('par-bg-1');
+    let pTick = false;
+    function updateParallax() {
+      if (window.innerWidth < 768) { pTick = false; return; }
+      const rect = parSection.getBoundingClientRect();
+      const viewH = window.innerHeight;
+      if (rect.bottom > 0 && rect.top < viewH) {
+        const progress = (viewH - rect.top) / (viewH + rect.height);
+        parBg.style.transform = `translateY(${(progress - 0.5) * 80}px)`;
+      }
+      pTick = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!pTick) { requestAnimationFrame(updateParallax); pTick = true; }
+    }, { passive: true });
+
+    // ── Gallery filter ────────────────────────────
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.masonry-item').forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.opacity = show ? '1' : '0.15';
+          item.style.transform = show ? '' : 'scale(0.97)';
+          item.style.transition = 'opacity 0.5s, transform 0.5s';
+        });
+      });
+    });
+
+    // ── Lightbox ──────────────────────────────────
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+    const allImages = Array.from(document.querySelectorAll('.masonry-item img'));
+    let currentIdx = 0;
+
+    function openLightbox(idx) {
+      currentIdx = idx;
+      lbImg.src = allImages[idx].src;
+      lbImg.alt = allImages[idx].alt;
+      lbCounter.textContent = `${idx + 1} / ${allImages.length}`;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function navLightbox(dir) {
+      currentIdx = (currentIdx + dir + allImages.length) % allImages.length;
+      lbImg.style.opacity = '0';
+      setTimeout(() => {
+        lbImg.src = allImages[currentIdx].src;
+        lbImg.alt = allImages[currentIdx].alt;
+        lbCounter.textContent = `${currentIdx + 1} / ${allImages.length}`;
+        lbImg.style.opacity = '1';
+      }, 200);
+    }
+
+    document.querySelectorAll('.masonry-item').forEach((item, i) => {
+      item.addEventListener('click', () => openLightbox(i));
+    });
+    document.getElementById('lb-close').addEventListener('click', closeLightbox);
+    document.getElementById('lb-prev').addEventListener('click', () => navLightbox(-1));
+    document.getElementById('lb-next').addEventListener('click', () => navLightbox(1));
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navLightbox(-1);
+      if (e.key === 'ArrowRight') navLightbox(1);
+    });
+
+    // ── Contact form ──────────────────────
+    // ── Contact form ──────────────────────────────
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-submit');
+      btn.textContent = 'Envoyé ✓';
+      btn.style.borderColor = 'var(--accent)';
+      btn.style.color = 'var(--accent)';
+    });
+
+    // ── Cookie Banner ──────────────────────────────────────────────────────
+    var COOKIE_BANNER = document.getElementById('cookie-banner');
+    var RGPD_MODAL = document.getElementById('rgpd-modal');
+
+    // Bannière : s'affiche si pas de consentement stocké
+    function showBanner() { COOKIE_BANNER.classList.add('cb-show'); }
+    function hideBanner() { COOKIE_BANNER.classList.remove('cb-show'); }
+
+    if (!localStorage.getItem('cookie-consent')) { showBanner(); }
+
+    document.getElementById('cb-accept').addEventListener('click', function () {
+      localStorage.setItem('cookie-consent', 'accepted');
+      hideBanner();
+    });
+    document.getElementById('cb-refuse').addEventListener('click', function () {
+      localStorage.setItem('cookie-consent', 'refused');
+      hideBanner();
+    });
+
+    // Modale RGPD — sans overflow:hidden pour éviter le saut de scrollbar
+    function openModal(tabId) {
+      RGPD_MODAL.classList.add('rm-open');
+      if (tabId) switchTab(tabId);
+    }
+    function closeModal() {
+      RGPD_MODAL.classList.remove('rm-open');
+    }
+    function switchTab(tabId) {
+      document.querySelectorAll('.rm-tab').forEach(function (t) {
+        t.classList.toggle('rm-active', t.dataset.tab === tabId);
+      });
+      document.querySelectorAll('.rm-panel').forEach(function (p) {
+        p.classList.toggle('rm-active', p.id === 'rm-tab-' + tabId);
+      });
+    }
+
+    // ── Onglets de la modale ─────────────────────
+    document.querySelectorAll('.rm-tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        switchTab(this.dataset.tab);
+      });
+    });
+
+    document.getElementById('btn-open-rgpd').addEventListener('click', function () { openModal('legal'); });
+    document.getElementById('rm-close').addEventListener('click', closeModal);
+    document.getElementById('rm-backdrop').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+        document.querySelectorAll('.rm-reopen').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        closeModal();
+        setTimeout(showBanner, 300);
+      });
+    });
+
+    // Footer legal link opens modal
+    var footerLink = document.getElementById('footer-rgpd-link');
+    if (footerLink) {
+      footerLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal('legal');
+      });
+    }
+
+    // Cookie banner link opens RGPD modal
+    var cbLink = document.getElementById('cb-link-rgpd');
+    if (cbLink) {
+      cbLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        hideBanner();
+        openModal('rgpd');
+      });
+    }
+  </script>
+</body>
+</html>
