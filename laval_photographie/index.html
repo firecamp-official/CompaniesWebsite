@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Stéph Laval — Photographe Fine Art</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,6 +114,7 @@
       line-height: 1.7;
       overflow-x: hidden;
       cursor: none;
+      padding-top: env(safe-area-inset-top, 0px);
       transition: background 0.5s var(--ease-silk), color 0.5s var(--ease-silk);
     }
 
@@ -218,6 +219,7 @@
     nav {
       position: fixed;
       top: 0;
+      top: env(safe-area-inset-top, 0px);
       left: 0;
       right: 0;
       z-index: 1000;
@@ -226,6 +228,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 clamp(24px, 5vw, 72px);
+      padding-left: max(clamp(24px, 5vw, 72px), env(safe-area-inset-left));
+      padding-right: max(clamp(24px, 5vw, 72px), env(safe-area-inset-right));
       transition: background 0.5s var(--ease-silk), backdrop-filter 0.5s;
     }
 
@@ -535,6 +539,7 @@
    ========================================== */
     #hero {
       min-height: 100vh;
+      min-height: 100dvh;
       position: relative;
       overflow: hidden;
     }
@@ -542,9 +547,9 @@
     .hero-grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: repeat(8, calc((100vh - var(--nav-h)) / 8));
+      grid-template-rows: repeat(8, calc((100dvh - var(--nav-h)) / 8));
       gap: 5px;
-      height: 100vh;
+      height: 100dvh;
     }
 
     .hero-cell {
@@ -989,22 +994,26 @@
     }
 
     @media (max-width: 768px) {
+      /* ── Portfolio galerie horizontale ── */
       #portfolio {
         height: auto !important;
-        padding: clamp(60px, 8vw, 100px) 0;
+        padding: 40px 0 60px;
       }
 
       .portfolio-sticky {
         position: static;
         height: auto;
+        overflow: visible;
       }
 
       .gallery-h-track-container {
-        max-height: none;
-        overflow-x: auto;
-        overflow-y: visible;
+        height: 65vw;
+        max-height: 320px;
+        overflow-x: scroll;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
+        touch-action: pan-x;
       }
 
       .gallery-h-track-container::-webkit-scrollbar {
@@ -1012,19 +1021,32 @@
       }
 
       .gallery-h-track {
-        width: max-content;
-        height: 55vw;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: max-content !important;
+        height: 100% !important;
         transform: none !important;
+        padding: 0 24px;
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .gallery-h-item {
+        flex-shrink: 0 !important;
+        display: block !important;
       }
 
       .gallery-h-item:nth-child(odd) {
-        width: 55vw;
-        height: 100%;
+        width: 55vw !important;
+        max-width: 260px;
+        height: 100% !important;
       }
 
       .gallery-h-item:nth-child(even) {
-        width: 42vw;
-        height: 80%;
+        width: 42vw !important;
+        max-width: 200px;
+        height: 82% !important;
+        align-self: center;
       }
 
       .h-progress-bar {
@@ -1925,6 +1947,66 @@
         align-items: flex-start;
         gap: 24px;
       }
+
+      /* ── Safe area mobile ── */
+      nav {
+        padding-top: env(safe-area-inset-top, 0px);
+      }
+
+      footer {
+        padding-bottom: max(24px, env(safe-area-inset-bottom));
+      }
+
+      /* ── Sections mobile ── */
+      section {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+      }
+
+      /* ── About mobile ── */
+      #about {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      /* ── Contact mobile ── */
+      #contact {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      /* ── Intro mobile ── */
+      #intro {
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      /* ── Hero mobile ── */
+      .hero-grid {
+        height: 100dvh;
+      }
+
+      /* ── Cookie banner safe area ── */
+      #cookie-banner {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+      }
+
+      /* ── Modal mobile plein écran ── */
+      .rm-drawer {
+        max-height: 92dvh;
+        border-radius: 16px 16px 0 0;
+      }
+
+      .rm-head {
+        padding: 20px 20px 16px;
+      }
+
+      .rm-body {
+        padding: 20px;
+      }
     }
 
     .logo {
@@ -2029,6 +2111,7 @@
       align-items: flex-end;
       justify-content: center;
       pointer-events: none;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     #rgpd-modal.rm-open {
@@ -2050,10 +2133,11 @@
       border-top: 1px solid var(--border);
       width: 100%;
       max-width: 860px;
-      max-height: 85vh;
+      max-height: 90dvh;
       display: flex;
       flex-direction: column;
       box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     .rm-head {
@@ -2206,10 +2290,26 @@
       .rm-head {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
+      }
+
+      .rm-tabs {
+        width: 100%;
+      }
+
+      .rm-tab {
+        flex: 1;
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 10px;
       }
 
       .rm-body {
-        padding: 20px;
+        padding: 16px;
+      }
+
+      .rm-title {
+        font-size: 18px;
       }
     }
   </style>
@@ -2237,7 +2337,7 @@
 
   <!-- Navigation — ordre : Accueil, À propos, Mes services, Contact, Mentions légales -->
   <nav id="nav">
-    <a href="#hero" class="nav-logo"><img src="Logos.png" class="logo"></a>
+    <a href="#hero" class="nav-logo"><img src="/Logos.png" class="logo"></a>
     <ul class="nav-links">
       <li><a href="#hero">Accueil</a></li>
       <li><a href="#about">À propos</a></li>
@@ -2890,6 +2990,37 @@
     }, { passive: true });
     updateHScroll();
 
+    // ── Drag-to-scroll sur mobile ─────────────────
+    (function () {
+      var container = document.querySelector('.gallery-h-track-container');
+      if (!container) return;
+      var isDown = false;
+      var startX;
+      var scrollLeft;
+
+      container.addEventListener('mousedown', function (e) {
+        isDown = true;
+        container.style.cursor = 'grabbing';
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+      container.addEventListener('mouseleave', function () {
+        isDown = false;
+        container.style.cursor = 'grab';
+      });
+      container.addEventListener('mouseup', function () {
+        isDown = false;
+        container.style.cursor = 'grab';
+      });
+      container.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        e.preventDefault();
+        var x = e.pageX - container.offsetLeft;
+        var walk = (x - startX) * 1.5;
+        container.scrollLeft = scrollLeft - walk;
+      });
+    })();
+
     // ── Parallax divider ─────────────────────────
     const parSection = document.getElementById('parallax-1');
     const parBg = document.getElementById('par-bg-1');
@@ -3051,5 +3182,4 @@
     }
   </script>
 </body>
-
 </html>
